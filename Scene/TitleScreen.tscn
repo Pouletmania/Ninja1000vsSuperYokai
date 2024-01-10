@@ -1,0 +1,73 @@
+[gd_scene load_steps=6 format=3 uid="uid://b4a5pdfkajrj2"]
+
+[ext_resource type="Script" path="res://Script/TitleScreen/MainMenu.gd" id="1_7lg7v"]
+[ext_resource type="Texture2D" uid="uid://bwf0trjmdbv41" path="res://Asset/TitleScreen/Menu/label_new_game.png" id="1_ifos8"]
+[ext_resource type="Texture2D" uid="uid://cnq51xgiha5od" path="res://Asset/TitleScreen/Menu/label_options.png" id="2_ce3y2"]
+[ext_resource type="Script" path="res://Script/TitleScreen/OptionMenu.gd" id="4_k4fam"]
+[ext_resource type="Texture2D" uid="uid://c60v273gyl5hf" path="res://Asset/TitleScreen/Menu/label_continue.png" id="5_8rwsp"]
+
+[node name="TitleScreen" type="MarginContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1.0
+offset_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 40
+theme_override_constants/margin_top = 40
+theme_override_constants/margin_right = 40
+theme_override_constants/margin_bottom = 40
+
+[node name="HBoxContainer" type="HBoxContainer" parent="."]
+layout_mode = 2
+alignment = 1
+
+[node name="MainMenu" type="VBoxContainer" parent="HBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 30
+alignment = 1
+script = ExtResource("1_7lg7v")
+
+[node name="NewGame" type="TextureButton" parent="HBoxContainer/MainMenu"]
+layout_mode = 2
+texture_normal = ExtResource("1_ifos8")
+texture_pressed = ExtResource("1_ifos8")
+texture_hover = ExtResource("1_ifos8")
+texture_disabled = ExtResource("1_ifos8")
+texture_focused = ExtResource("1_ifos8")
+stretch_mode = 3
+
+[node name="Option" type="TextureButton" parent="HBoxContainer/MainMenu"]
+layout_mode = 2
+texture_normal = ExtResource("2_ce3y2")
+texture_pressed = ExtResource("2_ce3y2")
+texture_hover = ExtResource("2_ce3y2")
+texture_disabled = ExtResource("2_ce3y2")
+texture_focused = ExtResource("2_ce3y2")
+stretch_mode = 3
+
+[node name="OptionMenu" type="VBoxContainer" parent="HBoxContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+theme_override_constants/separation = 30
+alignment = 1
+script = ExtResource("4_k4fam")
+
+[node name="Back" type="TextureButton" parent="HBoxContainer/OptionMenu"]
+layout_mode = 2
+texture_normal = ExtResource("5_8rwsp")
+texture_pressed = ExtResource("5_8rwsp")
+texture_hover = ExtResource("5_8rwsp")
+texture_disabled = ExtResource("5_8rwsp")
+texture_focused = ExtResource("5_8rwsp")
+stretch_mode = 3
+
+[connection signal="pressed" from="HBoxContainer/MainMenu/Option" to="HBoxContainer/MainMenu" method="_on_option_pressed"]
+[connection signal="pressed" from="HBoxContainer/MainMenu/Option" to="HBoxContainer/OptionMenu" method="_on_option_pressed"]
+[connection signal="pressed" from="HBoxContainer/OptionMenu/Back" to="HBoxContainer/MainMenu" method="_on_back_pressed"]
+[connection signal="pressed" from="HBoxContainer/OptionMenu/Back" to="HBoxContainer/OptionMenu" method="_on_back_pressed"]
