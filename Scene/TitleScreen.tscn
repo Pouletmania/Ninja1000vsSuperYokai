@@ -1,10 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://b4a5pdfkajrj2"]
+[gd_scene load_steps=10 format=3 uid="uid://b4a5pdfkajrj2"]
 
-[ext_resource type="Script" path="res://Script/TitleScreen/MainMenu.gd" id="1_7lg7v"]
+[ext_resource type="Script" path="res://Script/TitleScreen/MenuContainer.gd" id="1_fgmyp"]
 [ext_resource type="Texture2D" uid="uid://bwf0trjmdbv41" path="res://Asset/TitleScreen/Menu/label_new_game.png" id="1_ifos8"]
 [ext_resource type="Texture2D" uid="uid://cnq51xgiha5od" path="res://Asset/TitleScreen/Menu/label_options.png" id="2_ce3y2"]
-[ext_resource type="Script" path="res://Script/TitleScreen/OptionMenu.gd" id="4_k4fam"]
-[ext_resource type="Texture2D" uid="uid://c60v273gyl5hf" path="res://Asset/TitleScreen/Menu/label_continue.png" id="5_8rwsp"]
+[ext_resource type="Texture2D" uid="uid://di6uv4dat53e3" path="res://Asset/TitleScreen/Menu/label_option_info.png" id="4_kr8t1"]
+[ext_resource type="Texture2D" uid="uid://c3fesbonc8ssc" path="res://Asset/TitleScreen/Menu/label_left.png" id="5_aym62"]
+[ext_resource type="Texture2D" uid="uid://cmia8a3af7ce4" path="res://Asset/TitleScreen/Menu/label_right.png" id="6_c6mac"]
+[ext_resource type="Texture2D" uid="uid://bso8lbp47yii4" path="res://Asset/TitleScreen/Menu/label_up.png" id="7_xctlm"]
+[ext_resource type="Texture2D" uid="uid://bm50bmnekygqj" path="res://Asset/TitleScreen/Menu/label_down.png" id="8_leg6r"]
+[ext_resource type="Texture2D" uid="uid://c5vcp0flrd00d" path="res://Asset/TitleScreen/Menu/label_back.png" id="9_rs31k"]
 
 [node name="TitleScreen" type="MarginContainer"]
 anchors_preset = 15
@@ -19,19 +23,20 @@ theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 
-[node name="HBoxContainer" type="HBoxContainer" parent="."]
+[node name="MenuContainer" type="HBoxContainer" parent="."]
 layout_mode = 2
 alignment = 1
+script = ExtResource("1_fgmyp")
 
-[node name="MainMenu" type="VBoxContainer" parent="HBoxContainer"]
+[node name="MainMenu" type="VBoxContainer" parent="MenuContainer"]
+visible = false
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 8
+size_flags_vertical = 4
 theme_override_constants/separation = 30
 alignment = 1
-script = ExtResource("1_7lg7v")
 
-[node name="NewGame" type="TextureButton" parent="HBoxContainer/MainMenu"]
+[node name="NewGame" type="TextureButton" parent="MenuContainer/MainMenu"]
 layout_mode = 2
 texture_normal = ExtResource("1_ifos8")
 texture_pressed = ExtResource("1_ifos8")
@@ -40,7 +45,7 @@ texture_disabled = ExtResource("1_ifos8")
 texture_focused = ExtResource("1_ifos8")
 stretch_mode = 3
 
-[node name="Option" type="TextureButton" parent="HBoxContainer/MainMenu"]
+[node name="Option" type="TextureButton" parent="MenuContainer/MainMenu"]
 layout_mode = 2
 texture_normal = ExtResource("2_ce3y2")
 texture_pressed = ExtResource("2_ce3y2")
@@ -49,25 +54,103 @@ texture_disabled = ExtResource("2_ce3y2")
 texture_focused = ExtResource("2_ce3y2")
 stretch_mode = 3
 
-[node name="OptionMenu" type="VBoxContainer" parent="HBoxContainer"]
-visible = false
+[node name="OptionMenu" type="VBoxContainer" parent="MenuContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
-size_flags_vertical = 8
-theme_override_constants/separation = 30
+theme_override_constants/separation = 60
 alignment = 1
-script = ExtResource("4_k4fam")
 
-[node name="Back" type="TextureButton" parent="HBoxContainer/OptionMenu"]
+[node name="OptionTitle" type="TextureRect" parent="MenuContainer/OptionMenu"]
 layout_mode = 2
-texture_normal = ExtResource("5_8rwsp")
-texture_pressed = ExtResource("5_8rwsp")
-texture_hover = ExtResource("5_8rwsp")
-texture_disabled = ExtResource("5_8rwsp")
-texture_focused = ExtResource("5_8rwsp")
+texture = ExtResource("2_ce3y2")
+expand_mode = 3
 stretch_mode = 3
 
-[connection signal="pressed" from="HBoxContainer/MainMenu/Option" to="HBoxContainer/MainMenu" method="_on_option_pressed"]
-[connection signal="pressed" from="HBoxContainer/MainMenu/Option" to="HBoxContainer/OptionMenu" method="_on_option_pressed"]
-[connection signal="pressed" from="HBoxContainer/OptionMenu/Back" to="HBoxContainer/MainMenu" method="_on_back_pressed"]
-[connection signal="pressed" from="HBoxContainer/OptionMenu/Back" to="HBoxContainer/OptionMenu" method="_on_back_pressed"]
+[node name="OptionInfo" type="TextureRect" parent="MenuContainer/OptionMenu"]
+layout_mode = 2
+texture = ExtResource("4_kr8t1")
+expand_mode = 3
+stretch_mode = 3
+
+[node name="InputContainer" type="HBoxContainer" parent="MenuContainer/OptionMenu"]
+layout_mode = 2
+theme_override_constants/separation = 200
+alignment = 2
+
+[node name="LeftColumn" type="VBoxContainer" parent="MenuContainer/OptionMenu/InputContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="LeftMoveOption" type="HBoxContainer" parent="MenuContainer/OptionMenu/InputContainer/LeftColumn"]
+layout_mode = 2
+alignment = 1
+
+[node name="LeftMoveButton" type="TextureButton" parent="MenuContainer/OptionMenu/InputContainer/LeftColumn/LeftMoveOption"]
+layout_mode = 2
+texture_normal = ExtResource("5_aym62")
+texture_pressed = ExtResource("5_aym62")
+texture_hover = ExtResource("5_aym62")
+texture_disabled = ExtResource("5_aym62")
+texture_focused = ExtResource("5_aym62")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="RightMoveOption" type="HBoxContainer" parent="MenuContainer/OptionMenu/InputContainer/LeftColumn"]
+layout_mode = 2
+alignment = 1
+
+[node name="RightMoveButton" type="TextureButton" parent="MenuContainer/OptionMenu/InputContainer/LeftColumn/RightMoveOption"]
+layout_mode = 2
+texture_normal = ExtResource("6_c6mac")
+texture_pressed = ExtResource("6_c6mac")
+texture_hover = ExtResource("6_c6mac")
+texture_disabled = ExtResource("6_c6mac")
+texture_focused = ExtResource("6_c6mac")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="RightColumn" type="VBoxContainer" parent="MenuContainer/OptionMenu/InputContainer"]
+layout_mode = 2
+theme_override_constants/separation = 50
+alignment = 1
+
+[node name="UpMoveOption" type="HBoxContainer" parent="MenuContainer/OptionMenu/InputContainer/RightColumn"]
+layout_mode = 2
+alignment = 1
+
+[node name="UpMoveButton" type="TextureButton" parent="MenuContainer/OptionMenu/InputContainer/RightColumn/UpMoveOption"]
+layout_mode = 2
+texture_normal = ExtResource("7_xctlm")
+texture_pressed = ExtResource("7_xctlm")
+texture_hover = ExtResource("7_xctlm")
+texture_disabled = ExtResource("7_xctlm")
+texture_focused = ExtResource("7_xctlm")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="DownMoveOption" type="HBoxContainer" parent="MenuContainer/OptionMenu/InputContainer/RightColumn"]
+layout_mode = 2
+alignment = 1
+
+[node name="DownMoveButton" type="TextureButton" parent="MenuContainer/OptionMenu/InputContainer/RightColumn/DownMoveOption"]
+layout_mode = 2
+texture_normal = ExtResource("8_leg6r")
+texture_pressed = ExtResource("8_leg6r")
+texture_hover = ExtResource("8_leg6r")
+texture_disabled = ExtResource("8_leg6r")
+texture_focused = ExtResource("8_leg6r")
+ignore_texture_size = true
+stretch_mode = 3
+
+[node name="BackButton" type="TextureButton" parent="MenuContainer/OptionMenu"]
+layout_mode = 2
+texture_normal = ExtResource("9_rs31k")
+texture_pressed = ExtResource("9_rs31k")
+texture_hover = ExtResource("9_rs31k")
+texture_disabled = ExtResource("9_rs31k")
+texture_focused = ExtResource("9_rs31k")
+stretch_mode = 3
+
+[connection signal="pressed" from="MenuContainer/MainMenu/Option" to="MenuContainer" method="_on_option_pressed"]
+[connection signal="pressed" from="MenuContainer/OptionMenu/BackButton" to="MenuContainer" method="_on_back_pressed"]

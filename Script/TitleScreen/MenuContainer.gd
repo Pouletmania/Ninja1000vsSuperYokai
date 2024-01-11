@@ -1,4 +1,4 @@
-extends VBoxContainer
+extends HBoxContainer
 
 
 # Called when the node enters the scene tree for the first time.
@@ -12,8 +12,10 @@ func _process(delta):
 
 
 func _on_option_pressed():
-	self.visible = true
+	get_node("MainMenu").visible = false
+	get_node("OptionMenu").visible = true
 
 
 func _on_back_pressed():
-	self.visible = false
+	get_node("MainMenu").visible = true
+	get_node("OptionMenu").visible = false
