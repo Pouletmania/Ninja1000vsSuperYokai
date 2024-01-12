@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://edym8kybsv3q" path="res://Asset/TitleScreen/Menu/label_option.png" id="5_w63xo"]
 [ext_resource type="Texture2D" uid="uid://7lpcx5f6jhjo" path="res://Asset/TitleScreen/Menu/label_quit.png" id="6_vc0lr"]
 [ext_resource type="Texture2D" uid="uid://bei2qwck1y724" path="res://Asset/TitleScreen/Menu/label_back.png" id="7_8lm8j"]
-[ext_resource type="Script" path="res://Script/TitleScreen/InputOption.gd" id="8_3wwuh"]
+[ext_resource type="Script" path="res://Script/TitleScreen/GridInput.gd" id="7_hdx2y"]
 
 [node name="TitleScreen" type="MarginContainer"]
 anchors_preset = 15
@@ -17,22 +17,20 @@ offset_right = -1.0
 offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 theme_override_constants/margin_left = 40
 theme_override_constants/margin_top = 40
 theme_override_constants/margin_right = 40
 theme_override_constants/margin_bottom = 40
 script = ExtResource("1_urjxg")
 
-[node name="MainScreen" type="Control" parent="."]
+[node name="MainScreen" type="AspectRatioContainer" parent="."]
 visible = false
 layout_mode = 2
 
 [node name="MainMenu" type="VBoxContainer" parent="MainScreen"]
 layout_mode = 2
-offset_left = 479.0
-offset_top = 168.0
-offset_right = 591.0
-offset_bottom = 400.0
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 30
@@ -63,29 +61,24 @@ layout_mode = 2
 texture_normal = ExtResource("6_vc0lr")
 stretch_mode = 3
 
-[node name="OptionScreen" type="Control" parent="."]
+[node name="OptionScreen" type="VBoxContainer" parent="."]
 layout_mode = 2
-
-[node name="Back" type="TextureButton" parent="OptionScreen"]
-layout_mode = 0
-offset_left = 501.0
-offset_top = 530.0
-offset_right = 553.0
-offset_bottom = 570.0
-scale = Vector2(1, 0.84)
-texture_normal = ExtResource("7_8lm8j")
 
 [node name="TabOption" type="TabContainer" parent="OptionScreen"]
 layout_mode = 2
-offset_right = 1071.0
-offset_bottom = 569.0
-scale = Vector2(1, 0.92)
+size_flags_vertical = 3
 tab_alignment = 1
 
-[node name="Input" type="GridContainer" parent="OptionScreen/TabOption"]
+[node name="Input" type="MarginContainer" parent="OptionScreen/TabOption"]
 layout_mode = 2
-columns = 4
-script = ExtResource("8_3wwuh")
+theme_override_constants/margin_top = 20
+
+[node name="GridInput" type="GridContainer" parent="OptionScreen/TabOption/Input"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 5
+columns = 3
+script = ExtResource("7_hdx2y")
 
 [node name="Sound" type="Control" parent="OptionScreen/TabOption"]
 visible = false
@@ -94,6 +87,12 @@ layout_mode = 2
 [node name="Video" type="Control" parent="OptionScreen/TabOption"]
 visible = false
 layout_mode = 2
+
+[node name="Back" type="TextureButton" parent="OptionScreen"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+texture_normal = ExtResource("7_8lm8j")
 
 [connection signal="pressed" from="MainScreen/MainMenu/Option" to="." method="_on_option_pressed"]
 [connection signal="pressed" from="MainScreen/MainMenu/Quit" to="." method="_on_quit_pressed"]
