@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cwie0rklevyws"]
+
+[ext_resource type="Script" path="res://Script/TitleScreen/InputLabel.gd" id="1_tj2jo"]
+
+[node name="Control" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+size_flags_horizontal = 6
+size_flags_vertical = 6
+script = ExtResource("1_tj2jo")
