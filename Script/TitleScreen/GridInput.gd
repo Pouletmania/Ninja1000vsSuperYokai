@@ -1,15 +1,16 @@
 extends GridContainer
-var InputConfigurationInstance = load("res://Scene/TitleScreen/InputConfiguration.tscn")
+
+var InputConfigurationInstance = load("res://Scene/TitleScreen/ActionCombo.tscn")
 
 # Called when the node enters the scene tree for the first time.
 func _ready():
-	#Creation automatique du couple "Label / Input" des action de l'InputMap hors action UI
+	# List of the custom input of the game
 	for action in InputMap.get_actions():
 		if not action.begins_with("ui_"):
-			add_action_configuration(action)
+			add_action_combo(action)
 
-
-func add_action_configuration(action: String):
-	var inputConfig = InputConfigurationInstance.instantiate()
-	inputConfig.set_action(action)
-	add_child(inputConfig)
+# Creation process of a combo "Action / Input"
+func add_action_combo(action: String):
+	var actionCombo = InputConfigurationInstance.instantiate()
+	actionCombo.rename(action)
+	add_child(actionCombo)
