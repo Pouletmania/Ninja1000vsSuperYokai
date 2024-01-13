@@ -1,0 +1,43 @@
+[gd_scene load_steps=3 format=3 uid="uid://c5a23wsxd1yss"]
+
+[ext_resource type="Script" path="res://Script/TitleScreen/GridInput.gd" id="1_viyrj"]
+[ext_resource type="Script" path="res://Script/LoadingConfigInput.gd" id="2_e2jxk"]
+
+[node name="InputTab" type="MarginContainer"]
+theme_override_constants/margin_left = 20
+theme_override_constants/margin_top = 20
+theme_override_constants/margin_right = 20
+theme_override_constants/margin_bottom = 20
+
+[node name="Input" type="VBoxContainer" parent="."]
+layout_mode = 2
+
+[node name="GridInput" type="GridContainer" parent="Input"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 5
+columns = 3
+script = ExtResource("1_viyrj")
+
+[node name="InputMenu" type="HBoxContainer" parent="Input"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 8
+script = ExtResource("2_e2jxk")
+
+[node name="Cancel" type="Button" parent="Input/InputMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+disabled = true
+text = "Cancel"
+
+[node name="Save" type="Button" parent="Input/InputMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+disabled = true
+text = "Save"
+
+[node name="Default" type="Button" parent="Input/InputMenu"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Default"
