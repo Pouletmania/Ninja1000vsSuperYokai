@@ -21,6 +21,6 @@ func _on_label_pressed():
 func start_listening_input(action: String):
 	var instance = Scene.instantiate()
 	get_node("/root").add_child(instance)
-	get_node("Input").text = await instance.listen()
+	get_node("Input").text = await instance.listen(action)
 	instance.queue_free()
 	

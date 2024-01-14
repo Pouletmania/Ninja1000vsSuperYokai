@@ -2,9 +2,8 @@
 
 [ext_resource type="Script" path="res://Script/TitleScreen/ListeningKey.gd" id="1_wlbxr"]
 
-[node name="ListeningKey" type="AspectRatioContainer"]
+[node name="ListeningKey" type="VBoxContainer"]
 process_mode = 3
-visible = false
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
@@ -15,3 +14,12 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_wlbxr")
+
+[node name="Texte" type="Label" parent="."]
+layout_mode = 2
+
+[node name="Cancel" type="Button" parent="."]
+layout_mode = 2
+text = "Cancel"
+
+[connection signal="button_down" from="Cancel" to="." method="_on_cancel_button_down"]
