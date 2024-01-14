@@ -1,11 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://g8vghhbejpae"]
+[gd_scene load_steps=2 format=3 uid="uid://cs1vaugvxrvry"]
 
-[ext_resource type="Script" path="res://Script/TitleScreen/InputConfiguration.gd" id="1_jm61x"]
+[ext_resource type="Script" path="res://Script/TitleScreen/ActionCombo.gd" id="1_x30ve"]
 
 [node name="ActionCombo" type="HBoxContainer"]
 size_flags_horizontal = 3
 size_flags_vertical = 0
-script = ExtResource("1_jm61x")
+script = ExtResource("1_x30ve")
 
 [node name="Label" type="Button" parent="."]
 layout_mode = 2

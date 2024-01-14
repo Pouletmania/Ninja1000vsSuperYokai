@@ -9,10 +9,10 @@ func _process(delta):
 	pass
 
 # Should be called after is creation for clarity
-func rename(action: String):
+func rename(action: String, input: String):
 	self.name = action
 	get_node("Label").text = action
-	get_node("Input").text = InputMap.action_get_events(action)[0].as_text()
+	get_node("Input").text = input
 
 # Called on click on child button "Label"
 func _on_label_pressed():

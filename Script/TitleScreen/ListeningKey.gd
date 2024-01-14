@@ -15,6 +15,9 @@ func _process(delta):
 func _input(event: InputEvent):
 	if event is InputEventKey:
 		InputListen = event.as_text()
+		InputMap.action_erase_events(ActionListen)
+		InputMap.action_add_event(ActionListen, event)
+		print("New event " + InputMap.action_get_events(ActionListen)[0].as_text() + " to action " + ActionListen)
 		switch_listening(false)
 
 func listen(action: String):
