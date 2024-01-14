@@ -13,15 +13,17 @@ func _process(delta):
 
 func _input(event: InputEvent):
 	if event is InputEventKey:
-		set_process_input(false)
-		get_tree().paused = false
-		IsListening = false
+		switch_listening(false)
 		InputListen = event.as_text()
+		print(get_node("/root"))
 
 func listen():
-	get_tree().paused = true
-	IsListening = true
-	set_process_input(true)
+	switch_listening(true)
 	while IsListening:
-		await get_tree().create_timer(0.5).timeout
+		await get_tree().create_timer(0.2).timeout
 	return InputListen
+
+func switch_listening(value: bool):
+	get_tree().paused = value
+	IsListening = value
+	set_process_input(value)
