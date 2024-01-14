@@ -15,4 +15,3 @@ func start_listening_input(action: String):
 	get_node("/root").add_child(instance)
 	get_node("Input").text = await instance.listen(action)
 	instance.queue_free()
-	

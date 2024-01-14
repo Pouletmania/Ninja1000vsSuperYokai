@@ -8,7 +8,7 @@ func _on_save_button_up():
 	write_buffer_in_config_file()
 
 func _on_load_button_up():
-	get_node("GridInput").construct_grid(true)
+	get_node("GridInput").rebuild_grid(true)
 
 func load_current_config():
 	Config.load("res://Config/ConfigFiles.cfg")
@@ -20,7 +20,3 @@ func write_in_buffer():
 
 func write_buffer_in_config_file():
 	Config.save("res://Config/ConfigFiles.cfg")
-
-
-
-
