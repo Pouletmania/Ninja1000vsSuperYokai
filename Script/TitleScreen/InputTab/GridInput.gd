@@ -8,36 +8,38 @@ func _ready():
 	if try_to_load_config_files():
 		construct_grid(Config.get_value("InputConfig", "AutoLoad"))
 	else:
-		load_from_input_map()
+		construct_from_input_map()
 
 func try_to_load_config_files():
-	var err = Config.load("res://Config/ConfigFiles.cfg")
+	var err = load_current_config()
 	if err != OK:
 		return false
 	else:
 		return true
 
+func load_current_config():
+	return Config.load("res://Config/ConfigFiles.cfg")
+
 func construct_grid(fromConfig: bool):
 	clear_grid()
 	if fromConfig and try_to_load_config_files():
-		load_from_config()
+		construct_from_config()
 	else:
-		load_from_input_map()
-
+		construct_from_input_map()
 
 func clear_grid():
 	for children in get_children():
 		remove_child(children)
 
-func load_from_input_map():
-	for action in InputMap.get_actions():
-		if not action.begins_with("ui_"):
-			add_action_combo(action, InputMap.action_get_events(action)[0].as_text())
-
-func load_from_config():
+func construct_from_config():
 	for actionKey in Config.get_section_keys("Input"):
 		if not Config.get_value("Input", actionKey).begins_with("ui_"):
 			add_action_combo(actionKey, Config.get_value("Input", actionKey))
+
+func construct_from_input_map():
+	for action in InputMap.get_actions():
+		if not action.begins_with("ui_"):
+			add_action_combo(action, InputMap.action_get_events(action)[0].as_text())
 
 func add_action_combo(action: String, input: String):
 	var actionCombo = InputConfigurationInstance.instantiate()

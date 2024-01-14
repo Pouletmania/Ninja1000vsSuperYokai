@@ -7,7 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://edym8kybsv3q" path="res://Asset/TitleScreen/Menu/label_option.png" id="5_w63xo"]
 [ext_resource type="Texture2D" uid="uid://7lpcx5f6jhjo" path="res://Asset/TitleScreen/Menu/label_quit.png" id="6_vc0lr"]
 [ext_resource type="Texture2D" uid="uid://bei2qwck1y724" path="res://Asset/TitleScreen/Menu/label_back.png" id="7_8lm8j"]
-[ext_resource type="PackedScene" uid="uid://vxkk7xr3hm4r" path="res://Scene/TitleScreen/InputTab.tscn" id="7_562m6"]
+[ext_resource type="PackedScene" uid="uid://d2sdfuq1tkyxn" path="res://Scene/TitleScreen/InputTab.tscn" id="7_562m6"]
 
 [node name="TitleScreen" type="MarginContainer"]
 anchors_preset = 15
@@ -26,7 +26,6 @@ theme_override_constants/margin_bottom = 40
 script = ExtResource("1_urjxg")
 
 [node name="MainScreen" type="VBoxContainer" parent="."]
-visible = false
 layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
@@ -59,6 +58,7 @@ texture_normal = ExtResource("6_vc0lr")
 stretch_mode = 3
 
 [node name="OptionScreen" type="VBoxContainer" parent="."]
+visible = false
 layout_mode = 2
 
 [node name="TabOption" type="TabContainer" parent="OptionScreen"]

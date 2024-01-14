@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://dvsgpv5cmamsr"]
 
-[ext_resource type="Script" path="res://Script/TitleScreen/ListeningKey.gd" id="1_wlbxr"]
+[ext_resource type="Script" path="res://Script/TitleScreen/InputTab/ActionCombo/Listening Key/ListeningKey.gd" id="1_bcktd"]
 
 [node name="ListeningKey" type="VBoxContainer"]
 process_mode = 3
@@ -13,7 +13,7 @@ grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-script = ExtResource("1_wlbxr")
+script = ExtResource("1_bcktd")
 
 [node name="Texte" type="Label" parent="."]
 layout_mode = 2

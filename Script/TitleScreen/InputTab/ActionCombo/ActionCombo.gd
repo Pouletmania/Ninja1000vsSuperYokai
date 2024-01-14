@@ -2,19 +2,11 @@ extends HBoxContainer
 
 var Scene = load("res://Scene/TitleScreen/ListeningKey.tscn")
 
-func _ready():
-	pass
-
-func _process(delta):
-	pass
-
-# Should be called after is creation for clarity
 func rename(action: String, input: String):
 	self.name = action
 	get_node("Label").text = action
 	get_node("Input").text = input
 
-# Called on click on child button "Label"
 func _on_label_pressed():
 	start_listening_input(self.name)
 
