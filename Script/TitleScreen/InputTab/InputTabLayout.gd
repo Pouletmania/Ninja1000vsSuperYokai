@@ -16,7 +16,7 @@ func load_current_config():
 func write_in_buffer():
 	for action in InputMap.get_actions():
 		if not action.begins_with("ui_"):
-			Config.set_value("Input", action, InputMap.action_get_events(action)[0].as_text())
+			Config.set_value("Input", action, InputMap.action_get_events(action)[0].keycode)
 
 func write_buffer_in_config_file():
 	Config.save("res://Config/ConfigFiles.cfg")

@@ -11,7 +11,9 @@ func _ready():
 func build_grid():
 	for action in InputMap.get_actions():
 		if not action.begins_with("ui_") and Config.has_section_key("Input", action):
-			add_action_combo(action, Config.get_value("Input", action))
+			var event = InputEventKey.new()
+			event.keycode = Config.get_value("Input", action)
+			add_action_combo(action, event.as_text_keycode())
 		elif not action.begins_with("ui_"):
 			add_action_combo(action, InputMap.action_get_events(action)[0].as_text())
 

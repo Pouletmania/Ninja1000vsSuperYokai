@@ -1,6 +1,6 @@
 extends Node
 
-var InputListen: String
+var InputListen
 var IsListening: bool
 var ActionListen: String
 
@@ -14,7 +14,7 @@ func _process(delta):
 
 func _input(event: InputEvent):
 	if event is InputEventKey:
-		InputListen = event.as_text()
+		InputListen = event.keycode
 		InputMap.action_erase_events(ActionListen)
 		InputMap.action_add_event(ActionListen, event)
 		switch_listening(false)
@@ -37,6 +37,6 @@ func switch_listening(value: bool):
 
 
 func _on_cancel_button_down():
-	InputListen = InputMap.action_get_events(ActionListen)[0].as_text()
+	InputListen = 0
 	switch_listening(false)
 	
