@@ -15,4 +15,4 @@ size_flags_horizontal = 10
 layout_mode = 2
 size_flags_horizontal = 3
 
-[connection signal="button_down" from="Label" to="." method="_on_label_pressed"]
+[connection signal="button_up" from="Label" to="." method="_on_label_pressed"]
