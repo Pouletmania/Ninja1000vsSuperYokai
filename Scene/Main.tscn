@@ -1,3 +1,6 @@
-[gd_scene format=3 uid="uid://ccudbp5gcu1uw"]
+[gd_scene load_steps=2 format=3 uid="uid://ccudbp5gcu1uw"]
 
-[node name="Node2D" type="Node2D"]
+[ext_resource type="Script" path="res://Script/Main/Main.gd" id="1_cbmt3"]
+
+[node name="Main" type="Node"]
+script = ExtResource("1_cbmt3")

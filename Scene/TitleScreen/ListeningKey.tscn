@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3 uid="uid://dvsgpv5cmamsr"]
+
+[ext_resource type="Script" path="res://Script/TitleScreen/InputTab/ActionCombo/Listening Key/ListeningKey.gd" id="1_bcktd"]
+
+[node name="ListeningKey" type="VBoxContainer"]
+process_mode = 3
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+script = ExtResource("1_bcktd")
+
+[node name="Texte" type="Label" parent="."]
+layout_mode = 2
+
+[node name="Cancel" type="Button" parent="."]
+layout_mode = 2
+text = "Cancel"
+
+[connection signal="button_down" from="Cancel" to="." method="_on_cancel_button_down"]
