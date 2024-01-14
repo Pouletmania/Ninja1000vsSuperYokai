@@ -30,12 +30,10 @@ func _on_save_button_up():
 
 func _on_load_button_up():
 	var err = Config.load("res://Config/ConfigFiles.cfg")
-	
-	# If the file didn't load, ignore it.
 	if err != OK:
 		print("Error : No config Files load")
 	else:
-		print("Load Config")
+		get_node("GridInput").construct_grid(true)
 	
 	
 
