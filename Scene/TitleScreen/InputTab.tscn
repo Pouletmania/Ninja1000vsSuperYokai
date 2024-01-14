@@ -1,8 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://d2sdfuq1tkyxn"]
+[gd_scene load_steps=3 format=3 uid="uid://d2sdfuq1tkyxn"]
 
 [ext_resource type="Script" path="res://Script/TitleScreen/InputTab/InputTabLayout.gd" id="1_jgmfu"]
 [ext_resource type="Script" path="res://Script/TitleScreen/InputTab/GridInput.gd" id="2_k4w8m"]
-[ext_resource type="Script" path="res://Script/TitleScreen/InputTab/AutoLoad.gd" id="3_lyyot"]
 
 [node name="InputTab" type="MarginContainer"]
 theme_override_constants/margin_left = 10
@@ -34,12 +33,5 @@ layout_mode = 2
 text = "Load last
 "
 
-[node name="AutoLoad" type="CheckButton" parent="InputTabLayout/InputMenu"]
-layout_mode = 2
-text = "AutoLoad
-"
-script = ExtResource("3_lyyot")
-
 [connection signal="button_up" from="InputTabLayout/InputMenu/Save" to="InputTabLayout" method="_on_save_button_up"]
 [connection signal="button_up" from="InputTabLayout/InputMenu/Load" to="InputTabLayout" method="_on_load_button_up"]
-[connection signal="toggled" from="InputTabLayout/InputMenu/AutoLoad" to="InputTabLayout/InputMenu/AutoLoad" method="_on_toggled"]
