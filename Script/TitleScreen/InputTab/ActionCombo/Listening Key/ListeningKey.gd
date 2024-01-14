@@ -1,16 +1,7 @@
 extends Node
 
-var EventListen
 var IsListening: bool
 var ActionListen: String
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	pass # Replace with function body.
-
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta):
-	pass
 
 func _input(event: InputEvent):
 	if event is InputEventKey:
@@ -33,7 +24,6 @@ func switch_listening(value: bool):
 	get_tree().paused = value
 	IsListening = value
 	set_process_input(value)
-
 
 func _on_cancel_button_down():
 	switch_listening(false)

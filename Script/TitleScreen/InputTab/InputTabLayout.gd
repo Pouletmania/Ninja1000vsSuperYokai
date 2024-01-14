@@ -11,7 +11,7 @@ func _on_load_button_up():
 	get_node("GridInput").rebuild_grid()
 
 func load_current_config():
-	Config.load("res://Config/ConfigFiles.cfg")
+	Config.load(Files.Config)
 
 func write_in_buffer():
 	for action in InputMap.get_actions():
@@ -19,4 +19,4 @@ func write_in_buffer():
 			Config.set_value("Input", action, InputMap.action_get_events(action)[0].keycode)
 
 func write_buffer_in_config_file():
-	Config.save("res://Config/ConfigFiles.cfg")
+	Config.save(Files.Config)
