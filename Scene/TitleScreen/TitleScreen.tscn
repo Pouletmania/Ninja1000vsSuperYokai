@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://b4a5pdfkajrj2"]
+[gd_scene load_steps=9 format=3 uid="uid://b4a5pdfkajrj2"]
 
 [ext_resource type="Script" path="res://Script/TitleScreen/TitleScreen.gd" id="1_urjxg"]
 [ext_resource type="Texture2D" uid="uid://chx6g70nwag6b" path="res://Asset/TitleScreen/Menu/label_continue.png" id="2_vt5ah"]
@@ -7,9 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://edym8kybsv3q" path="res://Asset/TitleScreen/Menu/label_option.png" id="5_w63xo"]
 [ext_resource type="Texture2D" uid="uid://7lpcx5f6jhjo" path="res://Asset/TitleScreen/Menu/label_quit.png" id="6_vc0lr"]
 [ext_resource type="Texture2D" uid="uid://bei2qwck1y724" path="res://Asset/TitleScreen/Menu/label_back.png" id="7_8lm8j"]
-[ext_resource type="Script" path="res://Script/TitleScreen/GridInput.gd" id="7_hdx2y"]
-[ext_resource type="Script" path="res://Script/TitleScreen/InputTabLayout.gd" id="7_hjh6a"]
-[ext_resource type="Script" path="res://Script/TitleScreen/AutoLoad.gd" id="9_gbjyn"]
+[ext_resource type="PackedScene" uid="uid://vxkk7xr3hm4r" path="res://Scene/TitleScreen/InputTab.tscn" id="7_562m6"]
 
 [node name="TitleScreen" type="MarginContainer"]
 anchors_preset = 15
@@ -68,42 +66,8 @@ layout_mode = 2
 size_flags_vertical = 3
 tab_alignment = 1
 
-[node name="InputTab" type="MarginContainer" parent="OptionScreen/TabOption"]
+[node name="Input" parent="OptionScreen/TabOption" instance=ExtResource("7_562m6")]
 layout_mode = 2
-theme_override_constants/margin_left = 10
-theme_override_constants/margin_top = 10
-theme_override_constants/margin_right = 10
-theme_override_constants/margin_bottom = 10
-
-[node name="InputTabLayout" type="VBoxContainer" parent="OptionScreen/TabOption/InputTab"]
-layout_mode = 2
-script = ExtResource("7_hjh6a")
-
-[node name="GridInput" type="GridContainer" parent="OptionScreen/TabOption/InputTab/InputTabLayout"]
-layout_mode = 2
-size_flags_vertical = 3
-theme_override_constants/h_separation = 5
-columns = 3
-script = ExtResource("7_hdx2y")
-
-[node name="InputMenu" type="HBoxContainer" parent="OptionScreen/TabOption/InputTab/InputTabLayout"]
-layout_mode = 2
-size_flags_horizontal = 4
-
-[node name="Save" type="Button" parent="OptionScreen/TabOption/InputTab/InputTabLayout/InputMenu"]
-layout_mode = 2
-text = "Save"
-
-[node name="Load" type="Button" parent="OptionScreen/TabOption/InputTab/InputTabLayout/InputMenu"]
-layout_mode = 2
-text = "Load last
-"
-
-[node name="AutoLoad" type="CheckButton" parent="OptionScreen/TabOption/InputTab/InputTabLayout/InputMenu"]
-layout_mode = 2
-text = "AutoLoad
-"
-script = ExtResource("9_gbjyn")
 
 [node name="Sound" type="Control" parent="OptionScreen/TabOption"]
 visible = false
@@ -121,7 +85,4 @@ texture_normal = ExtResource("7_8lm8j")
 
 [connection signal="pressed" from="MainScreen/Option" to="." method="_on_option_pressed"]
 [connection signal="pressed" from="MainScreen/Quit" to="." method="_on_quit_pressed"]
-[connection signal="button_up" from="OptionScreen/TabOption/InputTab/InputTabLayout/InputMenu/Save" to="OptionScreen/TabOption/InputTab/InputTabLayout" method="_on_save_button_up"]
-[connection signal="button_up" from="OptionScreen/TabOption/InputTab/InputTabLayout/InputMenu/Load" to="OptionScreen/TabOption/InputTab/InputTabLayout" method="_on_load_button_up"]
-[connection signal="toggled" from="OptionScreen/TabOption/InputTab/InputTabLayout/InputMenu/AutoLoad" to="OptionScreen/TabOption/InputTab/InputTabLayout/InputMenu/AutoLoad" method="_on_toggled"]
 [connection signal="pressed" from="OptionScreen/Back" to="." method="_on_back_pressed"]

@@ -13,27 +13,23 @@ func _process(delta):
 
 
 func _on_save_button_up():
-	var err = Config.load("res://Config/ConfigFiles.cfg")
-	
-	# If the file didn't load, ignore it.
-	if err != OK:
-		print("Error : No config Files load")
-		
+	load_current_config()
+	write_in_buffer()
+	write_buffer_in_config_file()
+
+func load_current_config():
+	Config.load("res://Config/ConfigFiles.cfg")
+
+func write_in_buffer():
 	for action in InputMap.get_actions():
 		if not action.begins_with("ui_"):
 			Config.set_value("Input", action, InputMap.action_get_events(action)[0].as_text())
-			print("Add Config : " + action + " : " + InputMap.action_get_events(action)[0].as_text())
+
+func write_buffer_in_config_file():
 	Config.save("res://Config/ConfigFiles.cfg")
-	print("Save Config")
-
-
 
 func _on_load_button_up():
-	var err = Config.load("res://Config/ConfigFiles.cfg")
-	if err != OK:
-		print("Error : No config Files load")
-	else:
-		get_node("GridInput").construct_grid(true)
-	
-	
+	get_node("GridInput").construct_grid(true)
+
+
 

@@ -10,11 +10,24 @@ func _ready():
 	else:
 		load_from_input_map()
 
-# Creation process of a combo "Action / Input"
-func add_action_combo(action: String, input: String):
-	var actionCombo = InputConfigurationInstance.instantiate()
-	actionCombo.rename(action, input)
-	add_child(actionCombo)
+func try_to_load_config_files():
+	var err = Config.load("res://Config/ConfigFiles.cfg")
+	if err != OK:
+		return false
+	else:
+		return true
+
+func construct_grid(fromConfig: bool):
+	clear_grid()
+	if fromConfig and try_to_load_config_files():
+		load_from_config()
+	else:
+		load_from_input_map()
+
+
+func clear_grid():
+	for children in get_children():
+		remove_child(children)
 
 func load_from_input_map():
 	for action in InputMap.get_actions():
@@ -26,20 +39,7 @@ func load_from_config():
 		if not Config.get_value("Input", actionKey).begins_with("ui_"):
 			add_action_combo(actionKey, Config.get_value("Input", actionKey))
 
-func clear_grid():
-	for children in get_children():
-		remove_child(children)
-
-func construct_grid(fromConfig: bool):
-	clear_grid()
-	if fromConfig and try_to_load_config_files():
-		load_from_config()
-	else:
-		load_from_input_map()
-
-func try_to_load_config_files():
-	var err = Config.load("res://Config/ConfigFiles.cfg")
-	if err != OK:
-		return false
-	else:
-		return true
+func add_action_combo(action: String, input: String):
+	var actionCombo = InputConfigurationInstance.instantiate()
+	actionCombo.rename(action, input)
+	add_child(actionCombo)
