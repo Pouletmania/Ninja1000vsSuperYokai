@@ -20,11 +20,17 @@ func setup_first_config_input():
 
 func determine_config_path():
 	if is_gamepad_connected():
-		ConfigPath = GamepadConfigFiles
-		KeyConfigMode = false
+		set_joypad_mode()
 	else:
-		ConfigPath = KeyboardConfigFiles
-		KeyConfigMode = true
+		set_keyboad_mode()
+
+func set_joypad_mode():
+	ConfigPath = GamepadConfigFiles
+	KeyConfigMode = false
+
+func set_keyboad_mode():
+	ConfigPath = KeyboardConfigFiles
+	KeyConfigMode = true
 
 func load_last_config():
 	CurrentConfig.load(InputManager.ConfigPath)
@@ -43,15 +49,12 @@ func is_gamepad_connected():
 
 func _on_joy_connection_changed(device: int, connected: bool):
 	if is_gamepad_connected() and is_key_config_mode():
-		switch_config(GamepadConfigFiles)
+		switch_config()
 	elif not is_gamepad_connected() and not is_key_config_mode():
-		switch_config(KeyboardConfigFiles)
+		switch_config()
 
-func switch_config(mode: String):
-	ConfigPath = mode
-	KeyConfigMode = !KeyConfigMode
-	load_last_config()
-	write_current_config_in_inputmap()
+func switch_config():
+	setup_first_config_input()
 	switch_configuration.emit()
 
 func convert_event_as_text(event):
@@ -64,19 +67,30 @@ func convert_event_as_text(event):
 
 func convert_config_as_event(action):
 	if is_key_config_mode():
-		var event = InputEventKey.new()
-		event.keycode = CurrentConfig.get_value("Input", action)
-		return event
+		return create_InputEventKey_from_config(action)
 	else:
-		if typeof(CurrentConfig.get_value("Input", action)) == TYPE_INT :
-			var event = InputEventJoypadButton.new()
-			event.set_button_index(int(CurrentConfig.get_value("Input", action)))
-			return event
-		else:
-			#TODO Creat Input Event Joypad Motion
-			var event = InputEventJoypadMotion.new()
-			return event
+		return create_joypad_event(action)
+		
 
+func create_InputEventKey_from_config(action):
+	var event = InputEventKey.new()
+	event.keycode = CurrentConfig.get_value("Input", action)
+	return event
+
+func create_joypad_event(action):
+	if typeof(CurrentConfig.get_value("Input", action)) == TYPE_INT :
+		return create_InputEventJoypadButton_from_config(action)
+	else:
+		return create_InputEventJoypadMotion_from_config(action)
+
+func create_InputEventJoypadButton_from_config(action):
+	var event = InputEventJoypadButton.new()
+	event.set_button_index(int(CurrentConfig.get_value("Input", action)))
+	return event
+
+func create_InputEventJoypadMotion_from_config(action):
+	var event = InputEventJoypadMotion.new()
+	return event
 
 func format_event_for_config_files(event):
 	if event is InputEventKey:
