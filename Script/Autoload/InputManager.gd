@@ -4,10 +4,22 @@ const KeyboardConfigFiles = "res://Config/KeyboardConfigFiles.cfg"
 const GamepadConfigFiles = "res://Config/GamepadConfigFiles.cfg"
 
 var ConfigPath = ""
-var KeyConfigMode
+var KeyConfigMode: bool
 var CurrentConfig = ConfigFile.new()
 
 signal switch_configuration
+
+#-------------------#
+#	Getter
+#-------------------#
+
+func is_key_config_mode():
+	return KeyConfigMode
+
+
+#----------				----------#
+#	Ready + fonctions associés
+#----------				----------#
 
 func _ready():
 	Input.joy_connection_changed.connect(_on_joy_connection_changed)
@@ -23,6 +35,12 @@ func determine_config_path():
 		set_joypad_mode()
 	else:
 		set_keyboad_mode()
+
+func is_gamepad_connected():
+	if Input.get_connected_joypads().size() > 0:
+		return true
+	else:
+		return false
 
 func set_joypad_mode():
 	ConfigPath = GamepadConfigFiles
@@ -41,11 +59,9 @@ func write_current_config_in_inputmap():
 			InputMap.action_erase_events(action)
 			InputMap.action_add_event(action, convert_config_as_event(action))
 
-func is_gamepad_connected():
-	if Input.get_connected_joypads().size() > 0:
-		return true
-	else:
-		return false
+#----------				----------#
+#	Signal + fonctions associés
+#----------				----------#
 
 func _on_joy_connection_changed(device: int, connected: bool):
 	if is_gamepad_connected() and is_key_config_mode():
@@ -56,6 +72,10 @@ func _on_joy_connection_changed(device: int, connected: bool):
 func switch_config():
 	setup_first_config_input()
 	switch_configuration.emit()
+
+#----------				----------#
+#	Fonction de convertion
+#----------				----------#
 
 func convert_event_as_text(event):
 	if event is InputEventKey:
@@ -70,7 +90,6 @@ func convert_config_as_event(action):
 		return create_InputEventKey_from_config(action)
 	else:
 		return create_joypad_event(action)
-		
 
 func create_InputEventKey_from_config(action):
 	var event = InputEventKey.new()
@@ -99,6 +118,3 @@ func format_event_for_config_files(event):
 		return event.get_button_index()
 	elif event is InputEventJoypadMotion:
 		return "TODO Convert Input Event Joypad Motion"
-
-func is_key_config_mode():
-	return KeyConfigMode
