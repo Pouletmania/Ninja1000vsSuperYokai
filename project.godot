@@ -17,7 +17,7 @@ config/icon="res://icon.svg"
 
 [autoload]
 
-Files="*res://Script/Autoload/Files.gd"
+InputManager="*res://Script/Autoload/InputManager.gd"
 
 [input]
 
