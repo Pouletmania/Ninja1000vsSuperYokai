@@ -1,26 +1,18 @@
-[gd_scene load_steps=3 format=3 uid="uid://cs1vaugvxrvry"]
+[gd_scene load_steps=2 format=3 uid="uid://cs1vaugvxrvry"]
 
 [ext_resource type="Script" path="res://Script/TitleScreen/InputTab/ActionCombo/ActionCombo.gd" id="1_wepr2"]
-[ext_resource type="Script" path="res://Script/TitleScreen/InputTab/ActionCombo/InputImg.gd" id="2_w6yyc"]
 
 [node name="ActionCombo" type="HBoxContainer"]
 size_flags_horizontal = 3
-size_flags_vertical = 4
+size_flags_vertical = 0
 script = ExtResource("1_wepr2")
 
 [node name="Label" type="Button" parent="."]
 layout_mode = 2
 size_flags_horizontal = 10
-size_flags_vertical = 4
 
-[node name="InputText" type="Label" parent="."]
+[node name="Input" type="Label" parent="."]
 layout_mode = 2
 size_flags_horizontal = 3
-
-[node name="InputImg" type="TextureRect" parent="."]
-visible = false
-layout_mode = 2
-size_flags_horizontal = 2
-script = ExtResource("2_w6yyc")
 
 [connection signal="button_up" from="Label" to="." method="_on_label_pressed"]
