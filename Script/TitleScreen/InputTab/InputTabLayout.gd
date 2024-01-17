@@ -31,5 +31,3 @@ func _on_load_button_up():
 	InputManager.load_last_config()
 	InputManager.write_current_config_in_inputmap()
 	get_node("GridInput").rebuild_grid()
-
-

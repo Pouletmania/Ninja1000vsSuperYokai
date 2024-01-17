@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dn01p2gvfykl3"
-path="res://.godot/imported/RDown.png-51a24ff430e716ce9cb70eb5424ecc9a.ctex"
+uid="uid://4cobr7887icu"
+path="res://.godot/imported/0Plus.png-afd4f6b0ab5e4e3d6c64ee6c2da61852.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/GamepadInput/RDown.png"
-dest_files=["res://.godot/imported/RDown.png-51a24ff430e716ce9cb70eb5424ecc9a.ctex"]
+source_file="res://Asset/GamepadInput/0Plus.png"
+dest_files=["res://.godot/imported/0Plus.png-afd4f6b0ab5e4e3d6c64ee6c2da61852.ctex"]
 
 [params]
 

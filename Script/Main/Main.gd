@@ -18,5 +18,3 @@ var Instance
 func _ready():
 	Instance = FirstScene.instantiate()
 	add_child(Instance)
-
-

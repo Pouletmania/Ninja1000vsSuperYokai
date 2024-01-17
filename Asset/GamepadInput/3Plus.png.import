@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bd5q1jpmu1k7"
-path="res://.godot/imported/LLeft.png-1ef53e8fd71c6dc7c94068e34c21a1a4.ctex"
+uid="uid://dn01p2gvfykl3"
+path="res://.godot/imported/3Plus.png-750ffbc624f85e575a9c68dcde35625c.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/GamepadInput/LLeft.png"
-dest_files=["res://.godot/imported/LLeft.png-1ef53e8fd71c6dc7c94068e34c21a1a4.ctex"]
+source_file="res://Asset/GamepadInput/3Plus.png"
+dest_files=["res://.godot/imported/3Plus.png-750ffbc624f85e575a9c68dcde35625c.ctex"]
 
 [params]
 

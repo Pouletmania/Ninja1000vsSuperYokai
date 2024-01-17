@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://df22fh2j5c1ro"
-path="res://.godot/imported/RT.png-ff715cdc7cb30421fca7c9a41c78a160.ctex"
+uid="uid://cf6rr5q26202r"
+path="res://.godot/imported/1Minus.png-7ec4ba495de8ef2898baa2a4ebf12909.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/GamepadInput/RT.png"
-dest_files=["res://.godot/imported/RT.png-ff715cdc7cb30421fca7c9a41c78a160.ctex"]
+source_file="res://Asset/GamepadInput/1Minus.png"
+dest_files=["res://.godot/imported/1Minus.png-7ec4ba495de8ef2898baa2a4ebf12909.ctex"]
 
 [params]
 

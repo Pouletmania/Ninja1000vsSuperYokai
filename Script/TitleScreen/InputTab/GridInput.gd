@@ -51,8 +51,3 @@ func rebuild_grid():
 func clear_grid():
 	for children in get_children():
 		remove_child(children)
-
-
-
-
-

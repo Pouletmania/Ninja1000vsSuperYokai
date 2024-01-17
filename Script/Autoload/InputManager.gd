@@ -99,7 +99,13 @@ func convert_event_as_text(event):
 	elif event is InputEventJoypadButton:
 		return str(event.get_button_index())
 	elif event is InputEventJoypadMotion:
-		return "TODO Convert Input Event Joypad Motion"
+		return str(event.get_axis()) + determine_direction(event)
+
+func determine_direction(event):
+	if event.get_axis_value() > 0:
+		return "Plus"
+	else:
+		return "Minus"
 
 func format_event_for_config_files(event):
 	if event is InputEventKey:
@@ -107,7 +113,7 @@ func format_event_for_config_files(event):
 	elif event is InputEventJoypadButton:
 		return event.get_button_index()
 	elif event is InputEventJoypadMotion:
-		return "TODO Convert Input Event Joypad Motion"
+		return str(event.get_axis() + determine_direction(event))
 
 func convert_config_as_event(action):
 	if is_key_config_mode():
@@ -133,5 +139,14 @@ func create_InputEventJoypadButton_from_config(action):
 	return event
 
 func create_InputEventJoypadMotion_from_config(action):
-	var event = InputEventJoypadMotion.new()
+	var event := InputEventJoypadMotion.new()
+	event.axis = int(CurrentConfig.get_value("Input", action).left(1))
+	event.axis_value = determine_axis_value(action)
+	InputMap.action_add_event("action", event)
 	return event
+
+func determine_axis_value(action):
+	if CurrentConfig.get_value("Input", action).find("Minus") != -1:
+		return 1
+	else:
+		return -1

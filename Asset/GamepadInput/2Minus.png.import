@@ -3,15 +3,15 @@
 importer="texture"
 type="CompressedTexture2D"
 uid="uid://brspk02dqd3nd"
-path="res://.godot/imported/RLeft.png-d1750b60445da14f368afd293df34cd6.ctex"
+path="res://.godot/imported/2Minus.png-05ec589e4aa1d31b3fce02cbfe9798ab.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Asset/GamepadInput/RLeft.png"
-dest_files=["res://.godot/imported/RLeft.png-d1750b60445da14f368afd293df34cd6.ctex"]
+source_file="res://Asset/GamepadInput/2Minus.png"
+dest_files=["res://.godot/imported/2Minus.png-05ec589e4aa1d31b3fce02cbfe9798ab.ctex"]
 
 [params]
 
