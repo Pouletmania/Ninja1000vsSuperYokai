@@ -1,17 +1,33 @@
 extends Node
 
+#----------		---------#
+#	Description Global
+#----------		---------#
+#Script attaché au node autoload InputManager servant a la gestion des
+#input du jeu. 
+# - Permet la convertion des evenement sous différent format et inversement.
+# - Gère la détection automatique d'un gamepad + modification de configuration
+#associé 
+
+#---------------#
+#	Variable
+#---------------#
+
+#Chemin des fichiers de configuration en fonction du controleur utilisé
 const KeyboardConfigFiles = "res://Config/KeyboardConfigFiles.cfg"
 const GamepadConfigFiles = "res://Config/GamepadConfigFiles.cfg"
 
+#Variable de gestion de la configuration acutellement utilisé
 var ConfigPath = ""
 var KeyConfigMode: bool
 var CurrentConfig = ConfigFile.new()
 
+#Signal émit lors d'un changement de configuration.
 signal switch_configuration
 
-#-------------------#
+#------------#
 #	Getter
-#-------------------#
+#------------#
 
 func is_key_config_mode():
 	return KeyConfigMode

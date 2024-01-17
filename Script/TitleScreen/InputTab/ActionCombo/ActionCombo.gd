@@ -1,5 +1,18 @@
 extends HBoxContainer
 
+#----------		---------#
+#	Description Global
+#----------		---------#
+#Script attaché au node autoload InputManager servant a la gestion des
+#input du jeu. 
+# - Permet la convertion des evenement sous différent format et inversement.
+# - Gère la détection automatique d'un gamepad + modification de configuration
+#associé 
+
+#---------------#
+#	Variable
+#---------------#
+
 var Scene = load("res://Scene/TitleScreen/ListeningKey.tscn")
 
 #----------									----------#
@@ -43,7 +56,7 @@ func _on_label_pressed():
 #Creation listener
 #Récupération de l'event
 #Update
-#Liébration de l'espace
+#Libébration de l'espace
 func start_listening_input(action: String):
 	var instance = Scene.instantiate()
 	get_node("/root").add_child(instance)

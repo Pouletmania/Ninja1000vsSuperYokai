@@ -1,5 +1,15 @@
 extends GridContainer
 
+#----------		---------#
+#	Description Global
+#----------		---------#
+#Script attaché au node GridInput permetant la génération automatique des options
+#de configuration des inputs du jeu.
+
+#---------------#
+#	Variable
+#---------------#
+
 var InputConfigurationInstance = load("res://Scene/TitleScreen/ActionCombo.tscn")
 
 #----------				----------#
