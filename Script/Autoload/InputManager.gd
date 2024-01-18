@@ -113,7 +113,7 @@ func format_event_for_config_files(event):
 	elif event is InputEventJoypadButton:
 		return event.get_button_index()
 	elif event is InputEventJoypadMotion:
-		return str(event.get_axis() + determine_direction(event))
+		return str(event.get_axis()) + determine_direction(event)
 
 func convert_config_as_event(action):
 	if is_key_config_mode():
