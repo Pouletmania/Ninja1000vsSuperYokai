@@ -1,13 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://b4a5pdfkajrj2"]
+[gd_scene load_steps=15 format=3 uid="uid://b4a5pdfkajrj2"]
 
 [ext_resource type="Script" path="res://Script/TitleScreen/TitleScreen.gd" id="1_urjxg"]
 [ext_resource type="Texture2D" uid="uid://chx6g70nwag6b" path="res://Asset/TitleScreen/Menu/label_continue.png" id="2_vt5ah"]
 [ext_resource type="Texture2D" uid="uid://dj7ssfj4rutov" path="res://Asset/TitleScreen/Menu/label_load.png" id="3_77qaw"]
+[ext_resource type="Texture2D" uid="uid://ca75dp84uom1f" path="res://Asset/TitleScreen/Menu/label_continue_selected.png" id="3_rssv7"]
 [ext_resource type="Texture2D" uid="uid://cl7kg2nja5pbj" path="res://Asset/TitleScreen/Menu/label_new_game.png" id="4_r2376"]
+[ext_resource type="Texture2D" uid="uid://d2sbtodubq1mi" path="res://Asset/TitleScreen/Menu/label_load_selected.png" id="5_k87cm"]
 [ext_resource type="Texture2D" uid="uid://edym8kybsv3q" path="res://Asset/TitleScreen/Menu/label_option.png" id="5_w63xo"]
 [ext_resource type="Texture2D" uid="uid://7lpcx5f6jhjo" path="res://Asset/TitleScreen/Menu/label_quit.png" id="6_vc0lr"]
 [ext_resource type="Texture2D" uid="uid://bei2qwck1y724" path="res://Asset/TitleScreen/Menu/label_back.png" id="7_8lm8j"]
 [ext_resource type="PackedScene" uid="uid://d2sdfuq1tkyxn" path="res://Scene/TitleScreen/InputTab.tscn" id="7_562m6"]
+[ext_resource type="Texture2D" uid="uid://do3swxvfpq8ua" path="res://Asset/TitleScreen/Menu/label_new_game_selected.png" id="7_cwyb7"]
+[ext_resource type="Texture2D" uid="uid://chjyf7fii6hs1" path="res://Asset/TitleScreen/Menu/label_option_selected.png" id="9_bd7sr"]
+[ext_resource type="Texture2D" uid="uid://bo5nk3pskvn6h" path="res://Asset/TitleScreen/Menu/label_quit_selected.png" id="11_hm0qc"]
+[ext_resource type="Texture2D" uid="uid://ciqag6y5ykm3i" path="res://Asset/TitleScreen/Menu/label_back_selected.png" id="14_e74ex"]
 
 [node name="TitleScreen" type="MarginContainer"]
 anchors_preset = 15
@@ -35,26 +41,31 @@ alignment = 1
 [node name="Continue" type="TextureButton" parent="MainScreen"]
 layout_mode = 2
 texture_normal = ExtResource("2_vt5ah")
+texture_focused = ExtResource("3_rssv7")
 stretch_mode = 3
 
 [node name="Load" type="TextureButton" parent="MainScreen"]
 layout_mode = 2
 texture_normal = ExtResource("3_77qaw")
+texture_focused = ExtResource("5_k87cm")
 stretch_mode = 3
 
 [node name="NewGame" type="TextureButton" parent="MainScreen"]
 layout_mode = 2
 texture_normal = ExtResource("4_r2376")
+texture_focused = ExtResource("7_cwyb7")
 stretch_mode = 3
 
 [node name="Option" type="TextureButton" parent="MainScreen"]
 layout_mode = 2
 texture_normal = ExtResource("5_w63xo")
+texture_focused = ExtResource("9_bd7sr")
 stretch_mode = 3
 
 [node name="Quit" type="TextureButton" parent="MainScreen"]
 layout_mode = 2
 texture_normal = ExtResource("6_vc0lr")
+texture_focused = ExtResource("11_hm0qc")
 stretch_mode = 3
 
 [node name="OptionScreen" type="VBoxContainer" parent="."]
@@ -82,6 +93,7 @@ layout_mode = 2
 size_flags_horizontal = 4
 size_flags_vertical = 8
 texture_normal = ExtResource("7_8lm8j")
+texture_focused = ExtResource("14_e74ex")
 
 [connection signal="pressed" from="MainScreen/Option" to="." method="_on_option_pressed"]
 [connection signal="pressed" from="MainScreen/Quit" to="." method="_on_quit_pressed"]
