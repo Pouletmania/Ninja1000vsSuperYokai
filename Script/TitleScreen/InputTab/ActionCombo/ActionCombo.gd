@@ -65,7 +65,7 @@ func start_listening_input(action: String):
 	update_input_text(event)
 	instance.queue_free()
 	if not InputManager.is_key_config_mode():
-		await get_tree().create_timer(0.1).timeout
+		await get_tree().create_timer(0.3).timeout
 		get_node("Label").grab_focus()
 
 func update_input_text(event):
