@@ -50,7 +50,8 @@ func find_right_neighbor(place: int):
 #----------				----------#
 
 func _draw():
-	setup_focus()
+	if not InputManager.is_key_config_mode():
+		setup_focus()
 
 func setup_focus():
 	get_child(0).get_node("Label").grab_focus()
