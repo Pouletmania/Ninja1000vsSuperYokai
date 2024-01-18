@@ -65,6 +65,15 @@ func set_joypad_mode():
 func set_keyboad_mode():
 	ConfigPath = KeyboardConfigFiles
 	KeyConfigMode = true
+	clear_all_focus()
+
+func clear_all_focus():
+	var temp = Control.new()
+	add_child(temp)
+	temp.set_focus_mode(Control.FOCUS_ALL)
+	temp.grab_focus()
+	temp.release_focus()
+	temp.queue_free()
 
 func load_last_config():
 	CurrentConfig.load(InputManager.ConfigPath)
