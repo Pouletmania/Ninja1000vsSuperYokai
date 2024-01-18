@@ -11,7 +11,6 @@ extends GridContainer
 #---------------#
 
 var InputConfigurationInstance = load("res://Scene/TitleScreen/ActionCombo.tscn")
-var LastFocusAction
 
 #----------				----------#
 #	Ready + fonctions associés
@@ -47,6 +46,16 @@ func find_right_neighbor(place: int):
 	return (((place + 1) % get_columns()))+floori(place / get_columns()) * get_columns()
 
 #----------				----------#
+#	Draw + fonctions associés
+#----------				----------#
+
+func _draw():
+	setup_focus()
+
+func setup_focus():
+	get_child(0).get_node("Label").grab_focus()
+
+#----------				----------#
 #	Signal + fonctions associés
 #----------				----------#
 
@@ -62,3 +71,6 @@ func rebuild_grid():
 func clear_grid():
 	for children in get_children():
 		remove_child(children)
+
+func _on_save_focus():
+	pass

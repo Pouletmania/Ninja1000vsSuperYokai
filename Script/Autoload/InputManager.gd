@@ -149,7 +149,7 @@ func create_InputEventJoypadButton_from_config(action):
 
 func create_InputEventJoypadMotion_from_config(action):
 	var event := InputEventJoypadMotion.new()
-	event.axis = int(CurrentConfig.get_value("Input", action).left(1))
+	event.axis = int(CurrentConfig.get_value("Input", action).left(1)) as JoyAxis
 	event.axis_value = determine_axis_value(action)
 	return event
 

@@ -23,8 +23,3 @@ func _on_back_pressed():
 #Appelé lors de l'appuie sur le bouton Quit
 func _on_quit_pressed():
 	get_tree().quit()
-
-#Appelé lors de changement de configuration
-func _on_switch_configuration():
-	if is_visible_in_tree():
-		_draw()
