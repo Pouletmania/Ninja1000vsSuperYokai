@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://d2sdfuq1tkyxn"]
+
+[ext_resource type="Script" path="res://Script/TitleScreen/InputTab/InputTabLayout.gd" id="1_jgmfu"]
+[ext_resource type="Script" path="res://Script/TitleScreen/InputTab/GridInput.gd" id="2_k4w8m"]
+
+[node name="InputTab" type="MarginContainer"]
+theme_override_constants/margin_left = 10
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_right = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="InputTabLayout" type="VBoxContainer" parent="."]
+layout_mode = 2
+script = ExtResource("1_jgmfu")
+
+[node name="GridInput" type="GridContainer" parent="InputTabLayout"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/h_separation = 5
+columns = 3
+script = ExtResource("2_k4w8m")
+
+[node name="InputMenu" type="HBoxContainer" parent="InputTabLayout"]
+layout_mode = 2
+size_flags_horizontal = 4
+
+[node name="Save" type="Button" parent="InputTabLayout/InputMenu"]
+layout_mode = 2
+text = "Save"
+
+[node name="Load" type="Button" parent="InputTabLayout/InputMenu"]
+layout_mode = 2
+text = "Load last
+"
+
+[connection signal="button_up" from="InputTabLayout/InputMenu/Save" to="InputTabLayout" method="_on_save_button_up"]
+[connection signal="button_up" from="InputTabLayout/InputMenu/Load" to="InputTabLayout" method="_on_load_button_up"]

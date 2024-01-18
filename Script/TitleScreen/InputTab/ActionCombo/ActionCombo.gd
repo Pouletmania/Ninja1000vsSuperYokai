@@ -3,11 +3,8 @@ extends HBoxContainer
 #----------		---------#
 #	Description Global
 #----------		---------#
-#Script attaché au node autoload InputManager servant a la gestion des
-#input du jeu. 
-# - Permet la convertion des evenement sous différent format et inversement.
-# - Gère la détection automatique d'un gamepad + modification de configuration
-#associé 
+#Script attaché à un ActionCombo permetant la gestion d'une configuration d'un
+#input.
 
 #---------------#
 #	Variable

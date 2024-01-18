@@ -26,7 +26,6 @@ func build_grid():
 		if not action.begins_with("ui_"):
 			add_action_combo(action)
 	build_neighbor()
-	setup_focus()
 
 func add_action_combo(action: String):
 	var actionCombo = InputConfigurationInstance.instantiate()
@@ -35,13 +34,17 @@ func add_action_combo(action: String):
 
 func build_neighbor():
 	for children in get_child_count():
-		get_child(children).find_child("Label").focus_neighbor_right = get_child((children + 1) % get_child_count()).find_child("Label").get_path()
-		get_child(children).find_child("Label").focus_neighbor_left = get_child((children - 1) % get_child_count()).find_child("Label").get_path()
+		get_child(children).find_child("Label").focus_neighbor_right = get_child(find_right_neighbor(children)).find_child("Label").get_path()
+		get_child(children).find_child("Label").focus_neighbor_left = get_child(find_left_neighbor(children)).find_child("Label").get_path()
 
-func setup_focus():
-	InputManager.clear_all_focus()
-	if not LastFocusAction == "":
-		get_child(0).get_node("Label").grab_focus()
+func find_left_neighbor(place: int):
+	if place == 0:
+		return (get_columns() - 1)
+	else:
+		return (((place - 1) % get_columns()))+floori(place / get_columns()) * get_columns()
+
+func find_right_neighbor(place: int):
+	return (((place + 1) % get_columns()))+floori(place / get_columns()) * get_columns()
 
 #----------				----------#
 #	Signal + fonctions associés
@@ -59,7 +62,3 @@ func rebuild_grid():
 func clear_grid():
 	for children in get_children():
 		remove_child(children)
-
-#Appelé avant reconstruction de la grille pour sauvegarder le dernier focus
-func _save_last_focus(action):
-	LastFocusAction = action

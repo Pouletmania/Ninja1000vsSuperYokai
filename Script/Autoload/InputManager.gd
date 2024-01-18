@@ -154,7 +154,7 @@ func create_InputEventJoypadMotion_from_config(action):
 	return event
 
 func determine_axis_value(action):
-	if CurrentConfig.get_value("Input", action).find("Minus") != -1:
+	if CurrentConfig.get_value("Input", action).find("Plus") != -1:
 		return 1
 	else:
 		return -1
