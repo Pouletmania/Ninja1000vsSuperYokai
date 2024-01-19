@@ -50,6 +50,7 @@ func find_right_neighbor(place: int):
 #----------				----------#
 
 func _draw():
+	rebuild_grid()
 	if not InputManager.is_key_config_mode():
 		setup_focus()
 
