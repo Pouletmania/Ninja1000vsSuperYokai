@@ -86,6 +86,17 @@ func write_current_config_in_inputmap():
 			if convert_config_as_event(action) != null:
 				InputMap.action_add_event(action, convert_config_as_event(action))
 
+func update_current_config():
+	for action in InputMap.get_actions():
+		if not action.begins_with("ui_"):
+			if not InputMap.action_get_events(action).is_empty():
+				CurrentConfig.set_value("Input", action, format_event_for_config_files(InputMap.action_get_events(action)[0]))
+			else:
+				CurrentConfig.set_value("Input", action, format_event_for_config_files(null))
+
+func save_current_inputmap():
+	CurrentConfig.save(ConfigPath)
+
 #----------				----------#
 #	Signal + fonctions associés
 #----------				----------#
