@@ -33,5 +33,5 @@ layout_mode = 2
 text = "Load last
 "
 
-[connection signal="button_up" from="InputTabLayout/InputMenu/Save" to="InputTabLayout" method="_on_save_button_up"]
-[connection signal="button_up" from="InputTabLayout/InputMenu/Load" to="InputTabLayout" method="_on_load_button_up"]
+[connection signal="button_up" from="InputTabLayout/InputMenu/Save" to="InputTabLayout/GridInput" method="_on_save_button_up"]
+[connection signal="button_up" from="InputTabLayout/InputMenu/Load" to="InputTabLayout/GridInput" method="_on_load_button_up"]

@@ -22,7 +22,8 @@ var Scene = load("res://Scene/TitleScreen/ListeningKey.tscn")
 func rename(action: String):
 	self.name = action
 	get_node("Label").text = action
-	setup_input(InputMap.action_get_events(action)[0])
+	if not InputMap.action_get_events(action).is_empty():
+		setup_input(InputMap.action_get_events(action)[0])
 
 func setup_input(event):
 	if InputManager.is_key_config_mode():
@@ -53,21 +54,10 @@ func _on_label_pressed():
 #Clear focus sur le bouton (Evite que l'input écouté soit interprété via le gui)
 #Creation listener
 #Récupération de l'event
-#Update
 #Libébration de l'espace
-#Timer de 0.1s avant récupération du focus si controller manette
-#   (Evite que l'input écouté soit interprété via le gui)
 func start_listening_input(action: String):
 	InputManager.clear_all_focus()
 	var instance = Scene.instantiate()
 	get_node("/root").add_child(instance)
-	var event = await instance.listen(action)
-	update_input_text(event)
+	await instance.listen(action)
 	instance.queue_free()
-	if not InputManager.is_key_config_mode():
-		await get_tree().create_timer(0.3).timeout
-		get_node("Label").grab_focus()
-
-func update_input_text(event):
-	if not event == null:
-		setup_input(event)
