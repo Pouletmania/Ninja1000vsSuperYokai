@@ -3,11 +3,8 @@ extends HBoxContainer
 #----------		---------#
 #	Description Global
 #----------		---------#
-#Script attaché au node autoload InputManager servant a la gestion des
-#input du jeu. 
-# - Permet la convertion des evenement sous différent format et inversement.
-# - Gère la détection automatique d'un gamepad + modification de configuration
-#associé 
+#Script attaché à un ActionCombo permetant la gestion d'une configuration d'un
+#input.
 
 #---------------#
 #	Variable
@@ -25,7 +22,8 @@ var Scene = load("res://Scene/TitleScreen/ListeningKey.tscn")
 func rename(action: String):
 	self.name = action
 	get_node("Label").text = action
-	setup_input(InputMap.action_get_events(action)[0])
+	if not InputMap.action_get_events(action).is_empty():
+		setup_input(InputMap.action_get_events(action)[0])
 
 func setup_input(event):
 	if InputManager.is_key_config_mode():
@@ -53,17 +51,13 @@ func toggle_to_text_input(config: bool):
 func _on_label_pressed():
 	start_listening_input(self.name)
 
+#Clear focus sur le bouton (Evite que l'input écouté soit interprété via le gui)
 #Creation listener
 #Récupération de l'event
-#Update
 #Libébration de l'espace
 func start_listening_input(action: String):
+	InputManager.clear_all_focus()
 	var instance = Scene.instantiate()
 	get_node("/root").add_child(instance)
-	var event = await instance.listen(action)
-	update_input_text(event)
+	await instance.listen(action)
 	instance.queue_free()
-
-func update_input_text(event):
-	if not event == null:
-		setup_input(event)

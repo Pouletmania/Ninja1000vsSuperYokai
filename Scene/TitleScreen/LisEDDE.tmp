@@ -34,5 +34,5 @@ layout_mode = 2
 size_flags_horizontal = 3
 text = "Cancel"
 
-[connection signal="button_up" from="Menu/Replace" to="." method="_on_replace_button_up"]
-[connection signal="button_up" from="Menu/Cancel" to="." method="_on_cancel_button_up"]
+[connection signal="button_down" from="Menu/Replace" to="." method="_on_replace_button_down"]
+[connection signal="button_down" from="Menu/Cancel" to="." method="_on_cancel_button_down"]
