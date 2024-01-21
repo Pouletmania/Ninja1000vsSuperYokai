@@ -12,7 +12,7 @@ extends MarginContainer
 
 #Appelé lors de l'appuie sur le bouton New Game du menu principale
 func _on_new_game_pressed():
-	get_tree().root.get_node("Main").add_child(Files.NewGameScene.instantiate())
+	get_tree().root.add_child(Files.NewGameScene.instantiate())
 	queue_free()
 
 #Appelé lors de l'appuie sur le bouton Option du menu principale

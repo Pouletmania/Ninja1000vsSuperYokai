@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="Ninja 1000 Vs Super Yokai"
-run/main_scene="res://Scene/Main.tscn"
+run/main_scene="res://Scene/TitleScreen/TitleScreen.tscn"
 config/features=PackedStringArray("4.1", "Forward Plus")
 config/icon="res://icon.svg"
 

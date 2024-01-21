@@ -5,5 +5,5 @@ extends Node2D
 #-------		--------#
 func _process(_delta):
 	if Input.is_action_just_pressed("Menu in game"):
-		get_tree().root.get_node("Main").add_child(Files.TitleScreenScene.instantiate())
+		get_tree().root.add_child(Files.TitleScreenScene.instantiate())
 		queue_free()
