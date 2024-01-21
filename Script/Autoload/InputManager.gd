@@ -91,7 +91,7 @@ func write_current_config_in_inputmap():
 #	Signal + fonctions associés
 #----------				----------#
 
-func _on_joy_connection_changed(device: int, connected: bool):
+func _on_joy_connection_changed(_device: int, _connected: bool):
 	if is_gamepad_connected() and is_key_config_mode():
 		switch_config()
 	elif not is_gamepad_connected() and not is_key_config_mode():

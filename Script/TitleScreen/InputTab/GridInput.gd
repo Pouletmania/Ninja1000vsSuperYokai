@@ -39,18 +39,33 @@ func add_action_combo(action: String):
 #Création des voisin pour la navication à l'aide des action ui_input de godot
 func build_neighbor():
 	for children in get_child_count():
-		get_child(children).find_child("Label").focus_neighbor_right = get_child(find_right_neighbor(children)).find_child("Label").get_path()
-		get_child(children).find_child("Label").focus_neighbor_left = get_child(find_left_neighbor(children)).find_child("Label").get_path()
+		set_left_neighbor(children)
+		set_right_neighbor(children)
+		set_top_neighbor(children)
+		set_bottom_neighbor(children)
 
-#Fonction mathématique de recherche de voisin
+func set_left_neighbor(children: int):
+	get_child(children).find_child("Label").focus_neighbor_right = get_child(find_right_neighbor(children)).find_child("Label").get_path()
+
 func find_left_neighbor(place: int):
 	if place == 0:
 		return (get_columns() - 1)
 	else:
 		return min((((place - 1) % get_columns()))+floori(place / get_columns()) * get_columns(),get_child_count()-1)
 
+func set_right_neighbor(children : int):
+	get_child(children).find_child("Label").focus_neighbor_left = get_child(find_left_neighbor(children)).find_child("Label").get_path()
+
 func find_right_neighbor(place: int):
 	return min((((place + 1) % get_columns()))+floori(place / get_columns()) * get_columns(),get_child_count()-1)
+
+func set_top_neighbor(children: int):
+	if children >= columns:
+		get_child(children).find_child("Label").focus_neighbor_top = get_child(children - 3).find_child("Label").get_path()
+
+func set_bottom_neighbor(children: int):
+	if not children >= get_child_count() - columns:
+		get_child(children).find_child("Label").focus_neighbor_bottom = get_child(children + 3).find_child("Label").get_path()
 
 #----------				----------#
 #	Draw + fonctions associés
