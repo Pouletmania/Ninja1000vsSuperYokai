@@ -13,7 +13,7 @@
 [ext_resource type="Texture2D" uid="uid://do3swxvfpq8ua" path="res://Asset/TitleScreen/Menu/label_new_game_selected.png" id="7_cwyb7"]
 [ext_resource type="Texture2D" uid="uid://chjyf7fii6hs1" path="res://Asset/TitleScreen/Menu/label_option_selected.png" id="9_bd7sr"]
 [ext_resource type="Texture2D" uid="uid://bo5nk3pskvn6h" path="res://Asset/TitleScreen/Menu/label_quit_selected.png" id="11_hm0qc"]
-[ext_resource type="PackedScene" uid="uid://c1oa4plwp3a4p" path="res://Scene/TitleScreen/TabOption.tscn" id="13_cxvea"]
+[ext_resource type="PackedScene" path="res://Scene/TitleScreen/TabOption.tscn" id="13_cxvea"]
 [ext_resource type="Script" path="res://Script/TitleScreen/InputTab/OptionScreen.gd" id="13_ii3sd"]
 [ext_resource type="Texture2D" uid="uid://ciqag6y5ykm3i" path="res://Asset/TitleScreen/Menu/label_back_selected.png" id="14_e74ex"]
 
@@ -86,6 +86,7 @@ size_flags_vertical = 8
 texture_normal = ExtResource("7_8lm8j")
 texture_focused = ExtResource("14_e74ex")
 
+[connection signal="pressed" from="MainScreen/NewGame" to="." method="_on_new_game_pressed"]
 [connection signal="pressed" from="MainScreen/Option" to="." method="_on_option_pressed"]
 [connection signal="pressed" from="MainScreen/Quit" to="." method="_on_quit_pressed"]
 [connection signal="pressed" from="OptionScreen/Back" to="." method="_on_back_pressed"]

@@ -9,12 +9,10 @@ extends Node
 #---------------#
 #	Variable
 #---------------#
-var FirstScene = load("res://Scene/TitleScreen/TitleScreen.tscn")
-var Instance
+var FirstScene = preload("res://Scene/TitleScreen/TitleScreen.tscn").instantiate()
 
 #----------				----------#
 #	Ready + fonctions associés
 #----------				----------#
 func _ready():
-	Instance = FirstScene.instantiate()
-	add_child(Instance)
+	add_child(FirstScene)

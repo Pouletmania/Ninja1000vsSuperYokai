@@ -1,0 +1,43 @@
+[gd_scene load_steps=6 format=3 uid="uid://c7cwe72ctmy15"]
+
+[ext_resource type="Texture2D" uid="uid://ban5gdxcmdwno" path="res://Asset/SomeImg/Bois.jpg" id="1_eq5ay"]
+[ext_resource type="Texture2D" uid="uid://nqnnr1gmxgb3" path="res://icon.svg" id="1_p0fxh"]
+[ext_resource type="Script" path="res://Script/Player/Player.gd" id="2_ns44e"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_q6rib"]
+size = Vector2(19.7953, 10)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_tk8xi"]
+
+[node name="SandBox" type="Node2D"]
+
+[node name="Ground" type="Node" parent="."]
+
+[node name="AnimatableBody2D" type="AnimatableBody2D" parent="Ground"]
+position = Vector2(0, 278)
+scale = Vector2(0.2, 1)
+
+[node name="Sprite2D" type="Sprite2D" parent="Ground/AnimatableBody2D"]
+scale = Vector2(10.1767, 0.0223384)
+texture = ExtResource("1_eq5ay")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Ground/AnimatableBody2D"]
+scale = Vector2(359.639, -1.00717)
+shape = SubResource("RectangleShape2D_q6rib")
+
+[node name="Player" type="Node" parent="."]
+
+[node name="CharacterBody2D" type="CharacterBody2D" parent="Player"]
+position = Vector2(0, -42)
+script = ExtResource("2_ns44e")
+
+[node name="Sprite2D" type="Sprite2D" parent="Player/CharacterBody2D"]
+scale = Vector2(0.16, 0.16)
+texture = ExtResource("1_p0fxh")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Player/CharacterBody2D"]
+shape = SubResource("CircleShape2D_tk8xi")
+
+[node name="Camera" type="Node" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="Camera"]
