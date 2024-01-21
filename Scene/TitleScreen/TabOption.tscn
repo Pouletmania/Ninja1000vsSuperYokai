@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://c1oa4plwp3a4p"]
+
+[ext_resource type="PackedScene" uid="uid://d2sdfuq1tkyxn" path="res://Scene/TitleScreen/InputTab.tscn" id="1_nxvbj"]
+
+[node name="TabOption" type="TabContainer"]
+size_flags_vertical = 3
+tab_alignment = 1
+
+[node name="Input" parent="." instance=ExtResource("1_nxvbj")]
+visible = false
+layout_mode = 2
+
+[node name="Sound" type="Control" parent="."]
+visible = false
+layout_mode = 2
+
+[node name="Video" type="Control" parent="."]
+visible = false
+layout_mode = 2

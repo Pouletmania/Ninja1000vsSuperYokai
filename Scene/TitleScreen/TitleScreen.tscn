@@ -10,10 +10,10 @@
 [ext_resource type="Texture2D" uid="uid://edym8kybsv3q" path="res://Asset/TitleScreen/Menu/label_option.png" id="5_w63xo"]
 [ext_resource type="Texture2D" uid="uid://7lpcx5f6jhjo" path="res://Asset/TitleScreen/Menu/label_quit.png" id="6_vc0lr"]
 [ext_resource type="Texture2D" uid="uid://bei2qwck1y724" path="res://Asset/TitleScreen/Menu/label_back.png" id="7_8lm8j"]
-[ext_resource type="PackedScene" uid="uid://d2sdfuq1tkyxn" path="res://Scene/TitleScreen/InputTab.tscn" id="7_562m6"]
 [ext_resource type="Texture2D" uid="uid://do3swxvfpq8ua" path="res://Asset/TitleScreen/Menu/label_new_game_selected.png" id="7_cwyb7"]
 [ext_resource type="Texture2D" uid="uid://chjyf7fii6hs1" path="res://Asset/TitleScreen/Menu/label_option_selected.png" id="9_bd7sr"]
 [ext_resource type="Texture2D" uid="uid://bo5nk3pskvn6h" path="res://Asset/TitleScreen/Menu/label_quit_selected.png" id="11_hm0qc"]
+[ext_resource type="PackedScene" uid="uid://c1oa4plwp3a4p" path="res://Scene/TitleScreen/TabOption.tscn" id="13_cxvea"]
 [ext_resource type="Texture2D" uid="uid://ciqag6y5ykm3i" path="res://Asset/TitleScreen/Menu/label_back_selected.png" id="14_e74ex"]
 
 [node name="TitleScreen" type="MarginContainer"]
@@ -74,20 +74,7 @@ stretch_mode = 3
 visible = false
 layout_mode = 2
 
-[node name="TabOption" type="TabContainer" parent="OptionScreen"]
-layout_mode = 2
-size_flags_vertical = 3
-tab_alignment = 1
-
-[node name="Input" parent="OptionScreen/TabOption" instance=ExtResource("7_562m6")]
-layout_mode = 2
-
-[node name="Sound" type="Control" parent="OptionScreen/TabOption"]
-visible = false
-layout_mode = 2
-
-[node name="Video" type="Control" parent="OptionScreen/TabOption"]
-visible = false
+[node name="TabOption" parent="OptionScreen" instance=ExtResource("13_cxvea")]
 layout_mode = 2
 
 [node name="Back" type="TextureButton" parent="OptionScreen"]
