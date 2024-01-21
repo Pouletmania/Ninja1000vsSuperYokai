@@ -10,7 +10,7 @@ extends GridContainer
 #	Variable
 #---------------#
 
-var InputConfigurationInstance = load("res://Scene/TitleScreen/ActionCombo.tscn")
+var InputConfigurationInstance = preload("res://Scene/TitleScreen/ActionCombo.tscn")
 var LastFocus = 0		#Sauvegarde du dernier focus
 var IsConfigLoad = false
 
@@ -33,8 +33,8 @@ func build_grid():
 #Création du menu de l'action
 func add_action_combo(action: String):
 	var actionCombo = InputConfigurationInstance.instantiate()
-	actionCombo.rename(action)
 	add_child(actionCombo)
+	actionCombo.rename(action)
 
 #Création des voisin pour la navication à l'aide des action ui_input de godot
 func build_neighbor():
@@ -44,6 +44,7 @@ func build_neighbor():
 		set_top_neighbor(children)
 		set_bottom_neighbor(children)
 
+#Fonction de calcul des différents voisin
 func set_left_neighbor(children: int):
 	get_child(children).find_child("Label").focus_neighbor_right = get_child(find_right_neighbor(children)).find_child("Label").get_path()
 
