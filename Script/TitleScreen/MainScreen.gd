@@ -13,6 +13,14 @@ func _ready():
 	InputManager.switch_configuration.connect(_on_switch_configuration)
 
 #----------				----------#
+#	Process + fonctions associés
+#----------				----------#
+
+func _process(delta):
+	if Input.is_action_just_pressed("ui_cancel") and is_visible_in_tree():
+		get_node("Quit").grab_focus()
+
+#----------				----------#
 #	Draw + fonctions associés
 #----------				----------#
 

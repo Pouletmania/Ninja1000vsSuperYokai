@@ -1,4 +1,4 @@
-[gd_scene load_steps=16 format=3 uid="uid://b4a5pdfkajrj2"]
+[gd_scene load_steps=17 format=3 uid="uid://b4a5pdfkajrj2"]
 
 [ext_resource type="Script" path="res://Script/TitleScreen/TitleScreen.gd" id="1_urjxg"]
 [ext_resource type="Script" path="res://Script/TitleScreen/MainScreen.gd" id="2_iywgd"]
@@ -14,6 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://chjyf7fii6hs1" path="res://Asset/TitleScreen/Menu/label_option_selected.png" id="9_bd7sr"]
 [ext_resource type="Texture2D" uid="uid://bo5nk3pskvn6h" path="res://Asset/TitleScreen/Menu/label_quit_selected.png" id="11_hm0qc"]
 [ext_resource type="PackedScene" uid="uid://c1oa4plwp3a4p" path="res://Scene/TitleScreen/TabOption.tscn" id="13_cxvea"]
+[ext_resource type="Script" path="res://Script/TitleScreen/InputTab/OptionScreen.gd" id="13_ii3sd"]
 [ext_resource type="Texture2D" uid="uid://ciqag6y5ykm3i" path="res://Asset/TitleScreen/Menu/label_back_selected.png" id="14_e74ex"]
 
 [node name="TitleScreen" type="MarginContainer"]
@@ -73,6 +74,7 @@ stretch_mode = 3
 [node name="OptionScreen" type="VBoxContainer" parent="."]
 visible = false
 layout_mode = 2
+script = ExtResource("13_ii3sd")
 
 [node name="TabOption" parent="OptionScreen" instance=ExtResource("13_cxvea")]
 layout_mode = 2
