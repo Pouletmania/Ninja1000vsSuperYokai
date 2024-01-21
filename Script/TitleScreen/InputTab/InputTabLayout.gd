@@ -13,4 +13,20 @@ extends VBoxContainer
 #----------				----------#
 
 func _draw():
-	get_node("GridInput").LastFocus = 0
+	get_node("ListInput/MargeGrid/GridInput").LastFocus = 0	#Réinitialisation du dernier focus de la grille lors d'un nouvelle affichage d'input tab
+
+#Appelé lors de l'appuie sur le bouton Save
+func _on_save_button_up():
+	InputManager.load_last_config()
+	InputManager.update_current_config()
+	InputManager.save_current_inputmap()
+
+#Appelé lors de l'appuie sur le bouton Load
+# - Load in buffer
+# - Write in current inputmap
+# - rebuild grid
+func _on_load_button_up():
+	InputManager.load_last_config()
+	InputManager.write_current_config_in_inputmap()
+	get_node("ListInput/MargeGrid/GridInput").rebuild_grid()
+	get_node("ListInput/MargeGrid/GridInput").IsConfigLoad = true		#Garde le focus sur le bouton load
