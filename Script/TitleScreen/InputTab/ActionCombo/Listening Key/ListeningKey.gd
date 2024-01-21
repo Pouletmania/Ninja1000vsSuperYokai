@@ -24,13 +24,25 @@ var ActionToReplace = ""	#Action à remplacé si evènement lu déjà associé
 
 const TriggeredValue = 0.8	#Seuil de détection des inputs analogique
 
+#-------		--------#
+#	Chemin node enfant
+#-------		--------#
+var c_Texte
+var c_ReplaceButton
+var c_CancelButton
+
+func setup_child_node_variable():
+	c_Texte  = get_node("Texte")
+	c_CancelButton = get_node("Menu/Cancel")
+	c_ReplaceButton = get_node("Menu/Replace")
+
 #----------								----------#
 #	Fonction Ready + fonctions associés
 #----------								----------#
 
-#Cancel si changement de controler
 func _ready():
-	InputManager.switch_configuration.connect(_on_cancel_button_up)
+	InputManager.switch_configuration.connect(_on_cancel_button_up)	#Cancel si changement de controler
+	setup_child_node_variable()
 
 #----------								----------#
 #	Fonction d'écoute + fonctions associés
@@ -49,9 +61,9 @@ func listen(action: String):
 #Pas de bouton Cancel avec une manette
 func setup_ui(action: String):
 	ActionListen = action
-	get_node("Texte").text = "Press input for " + ActionListen
+	c_Texte.text = "Press input for " + ActionListen
 	if InputManager.is_key_config_mode():
-		get_node("Menu/Cancel").visible = true
+		c_CancelButton.visible = true
 
 func start_listening():
 	get_tree().paused = true
@@ -98,16 +110,16 @@ func process_event_catched():
 
 func ask_to_replace(action: String):
 	ActionToReplace = action					#Récupération de l'action de l'action déjà utilisé pour écrasement si accepte
-	get_node("Texte").text = "Déjà utilisé pour : " + action
+	c_Texte.text = "Déjà utilisé pour : " + action
 	draw_replace_menu()
 
 #Affichage du menu de remplacement
 func draw_replace_menu():
-	get_node("Menu/Replace").visible = true
-	get_node("Menu/Cancel").visible = true
+	c_ReplaceButton.visible = true
+	c_CancelButton.visible = true
 	InputManager.clear_all_focus()
 	await get_tree().create_timer(0.2).timeout	#Delai avant positionnement du focus suppression de l'appel à l'action ui_accept de manière involontaire
-	get_node("Menu/Replace").grab_focus()
+	c_ReplaceButton.grab_focus()
 
 #----------				----------#
 #	Signal + fonctions associés

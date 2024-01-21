@@ -8,12 +8,27 @@ extends VBoxContainer
 #Est composé d'une grille GrdiInput permetant la conguration unitaire des inputs
 #et d'un menu permetant l'acces au fichier de configuration (Load / Save)
 
+#-------		--------#
+#	Chemin node enfant
+#-------		--------#
+var c_Grid
+
+func setup_child_node_variable():
+	c_Grid  = get_node("ListInput/MargeGrid/GridInput")
+
+#----------								----------#
+#	Fonction Ready + fonctions associés
+#----------								----------#
+
+func _ready():
+	setup_child_node_variable()
+
 #----------				----------#
 #	Signal + fonctions associés
 #----------				----------#
 
 func _draw():
-	get_node("ListInput/MargeGrid/GridInput").LastFocus = 0	#Réinitialisation du dernier focus de la grille lors d'un nouvelle affichage d'input tab
+	c_Grid.LastFocus = 0	#Réinitialisation du dernier focus de la grille lors d'un nouvelle affichage d'input tab
 
 #Appelé lors de l'appuie sur le bouton Save
 func _on_save_button_up():
@@ -28,5 +43,5 @@ func _on_save_button_up():
 func _on_load_button_up():
 	InputManager.load_last_config()
 	InputManager.write_current_config_in_inputmap()
-	get_node("ListInput/MargeGrid/GridInput").rebuild_grid()
-	get_node("ListInput/MargeGrid/GridInput").IsConfigLoad = true		#Garde le focus sur le bouton load
+	c_Grid.rebuild_grid()
+	c_Grid.IsConfigLoad = true		#Garde le focus sur le bouton load

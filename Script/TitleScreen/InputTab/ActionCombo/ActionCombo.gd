@@ -10,7 +10,26 @@ extends HBoxContainer
 #	Variable
 #---------------#
 
-var Scene = load("res://Scene/TitleScreen/ListeningKey.tscn")
+var Listener = preload("res://Scene/TitleScreen/ListeningKey.tscn").instantiate()
+
+#-------		--------#
+#	Chemin node enfant
+#-------		--------#
+var c_Label
+var c_InputImg
+var c_InputText
+
+func setup_child_node_variable():
+	c_Label  = get_node("Label")
+	c_InputImg = get_node("InputImg")
+	c_InputText = get_node("InputText")
+
+#----------								----------#
+#	Fonction Ready + fonctions associés
+#----------								----------#
+
+func _ready():
+	setup_child_node_variable()
 
 #----------									----------#
 #	Initialisation (rename) + fonctions associés
@@ -21,7 +40,7 @@ var Scene = load("res://Scene/TitleScreen/ListeningKey.tscn")
 
 func rename(action: String):
 	self.name = action
-	get_node("Label").text = action
+	c_Label.text = action
 	if not InputMap.action_get_events(action).is_empty():
 		setup_input(InputMap.action_get_events(action)[0])
 
@@ -32,16 +51,16 @@ func setup_input(event):
 		setup_input_image(event)
 
 func setup_input_image(event):
-	get_node("InputImg").load_image(event)
+	c_InputImg.load_image(event)
 	toggle_to_text_input(false)
 
 func setup_input_text(event):
-	get_node("InputText").text = InputManager.convert_event_as_text(event)
+	c_InputText.text = InputManager.convert_event_as_text(event)
 	toggle_to_text_input(true)
 
 func toggle_to_text_input(config: bool):
-	get_node("InputText").visible = config
-	get_node("InputImg").visible = !config
+	c_InputText.visible = config
+	c_InputImg.visible = !config
 
 #----------				----------#
 #	Signal + fonctions associés
@@ -57,7 +76,6 @@ func _on_label_pressed():
 #Libébration de l'instance
 func start_listening_input(action: String):
 	InputManager.clear_all_focus()
-	var instance = Scene.instantiate()
-	get_node("/root").add_child(instance)
-	await instance.listen(action)
-	instance.queue_free()
+	get_tree().root.add_child(Listener)
+	await Listener.listen(action)
+	Listener.queue_free()
