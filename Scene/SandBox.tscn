@@ -1,7 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://c7cwe72ctmy15"]
+[gd_scene load_steps=7 format=3 uid="uid://c3nocgs5yqati"]
 
 [ext_resource type="Texture2D" uid="uid://ban5gdxcmdwno" path="res://Asset/SomeImg/Bois.jpg" id="1_eq5ay"]
 [ext_resource type="Texture2D" uid="uid://nqnnr1gmxgb3" path="res://icon.svg" id="1_p0fxh"]
+[ext_resource type="Script" path="res://Script/SandBox/SandBox.gd" id="1_t7gvg"]
 [ext_resource type="Script" path="res://Script/Player/Player.gd" id="2_ns44e"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_q6rib"]
@@ -10,6 +11,7 @@ size = Vector2(19.7953, 10)
 [sub_resource type="CircleShape2D" id="CircleShape2D_tk8xi"]
 
 [node name="SandBox" type="Node2D"]
+script = ExtResource("1_t7gvg")
 
 [node name="Ground" type="Node" parent="."]
 
