@@ -18,9 +18,9 @@ func _ready():
 
 func _draw():
 	if not InputManager.is_key_config_mode():
-		init_first_selection()
+		init_focus()
 
-func init_first_selection():
+func init_focus():
 	get_child(0).grab_focus()
 
 #----------				----------#

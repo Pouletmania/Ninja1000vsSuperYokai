@@ -52,9 +52,9 @@ func _on_label_pressed():
 	start_listening_input(self.name)
 
 #Clear focus sur le bouton (Evite que l'input écouté soit interprété via le gui)
-#Creation listener
-#Récupération de l'event
-#Libébration de l'espace
+#Creation listener + attachement au root node pour centralisation d'affichage
+#Lancement de l'écoute
+#Libébration de l'instance
 func start_listening_input(action: String):
 	InputManager.clear_all_focus()
 	var instance = Scene.instantiate()

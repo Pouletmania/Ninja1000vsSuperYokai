@@ -17,11 +17,20 @@ extends Node
 #---------------#
 #	Variable
 #---------------#
-var IsListening: bool
-var ActionListen: String
-var EventCatch = null
-var TriggeredValue = 0.8
-var ActionToReplace = ""
+var IsListening: bool		#Toggle en cours de lecteur
+var ActionListen: String	#Action en cours de lecture
+var EventCatch = null		#Rédupération de l'évènement lu
+var ActionToReplace = ""	#Action à remplacé si evènement lu déjà associé
+
+const TriggeredValue = 0.8	#Seuil de détection des inputs analogique
+
+#----------								----------#
+#	Fonction Ready + fonctions associés
+#----------								----------#
+
+#Cancel si changement de controler
+func _ready():
+	InputManager.switch_configuration.connect(_on_cancel_button_up)
 
 #----------								----------#
 #	Fonction d'écoute + fonctions associés
@@ -30,7 +39,6 @@ var ActionToReplace = ""
 # - Génération d'une popup indiquant que la lecture d'une input au joueur
 # - Initilisation de l'écoute
 # - Attente d'un input
-# - Envoi de l'évènement écouté
 
 func listen(action: String):
 	setup_ui(action)
@@ -38,6 +46,7 @@ func listen(action: String):
 	while IsListening:
 		await get_tree().create_timer(0.2).timeout
 
+#Pas de bouton Cancel avec une manette
 func setup_ui(action: String):
 	ActionListen = action
 	get_node("Texte").text = "Press input for " + ActionListen
@@ -47,7 +56,6 @@ func setup_ui(action: String):
 func start_listening():
 	get_tree().paused = true
 	IsListening = true
-	set_process_input(true)
 
 func stop_listening():
 	IsListening = false
@@ -56,25 +64,30 @@ func stop_listening():
 #----------							----------#
 #	Fonction _input + fonctions associés
 #----------							----------#
-#Fonctionne appélé lors de la déctection des inputs.
-#Par défaut, la fonction n'est pas active, il est nécessaire d'appeler la
-#fonction set_process_input(bool) pour ques les évènement soit pris en compte
 
 func _input(event: InputEvent):
-	if event is InputEventKey and InputManager.is_key_config_mode():
-		catch_event(event)
-	elif event is InputEventJoypadButton and not InputManager.is_key_config_mode():
-		catch_event(event)
-	elif event is InputEventJoypadMotion and not InputManager.is_key_config_mode():
+	if event is InputEventJoypadMotion and not InputManager.is_key_config_mode():
 		if is_triggered(event):
 			catch_event(event)
+	elif event is InputEventJoypadButton and not InputManager.is_key_config_mode():
+		catch_event(event)
+	elif event is InputEventKey and InputManager.is_key_config_mode():
+		catch_event(event)
+
+#Verification si dépassement du seuil pour les inputs analogique
+func is_triggered(event: InputEventJoypadMotion):
+	if abs(event.get_axis_value()) > abs(TriggeredValue):
+		return true
+	else:
+		return false
 
 func catch_event(event: InputEvent):
-	set_process_input(false)
-	get_viewport().set_input_as_handled()
-	EventCatch = event
-	process_event_catched()
+	set_process_input(false)				#Stop l'appel de la fonction _input
+	get_viewport().set_input_as_handled()	#Stop la transimission de l'input aux autre nodes
+	EventCatch = event						#Récupération de l'evenement
+	process_event_catched()					#Traitement de l'evenement récupéré
 
+#On vérifie si l'évènement n'est pas déjà associé a une action avant enregitrement
 func process_event_catched():
 	var action = InputManager.search_event_in_action(EventCatch)
 	if action != "" and action != ActionListen:
@@ -84,29 +97,22 @@ func process_event_catched():
 		stop_listening()
 
 func ask_to_replace(action: String):
-	ActionToReplace = action
-	get_node("Texte").text = "Déjà utilisé pour : " + ActionToReplace
+	ActionToReplace = action					#Récupération de l'action de l'action déjà utilisé pour écrasement si accepte
+	get_node("Texte").text = "Déjà utilisé pour : " + action
 	draw_replace_menu()
 
+#Affichage du menu de remplacement
 func draw_replace_menu():
 	get_node("Menu/Replace").visible = true
 	get_node("Menu/Cancel").visible = true
 	InputManager.clear_all_focus()
-	await get_tree().create_timer(0.2).timeout
+	await get_tree().create_timer(0.2).timeout	#Delai avant positionnement du focus suppression de l'appel à l'action ui_accept de manière involontaire
 	get_node("Menu/Replace").grab_focus()
-
-#Valeur élevé au carré pour comparaison de nombre positif
-func is_triggered(event: InputEventJoypadMotion):
-	if abs(event.get_axis_value()) > abs(TriggeredValue):
-		return true
-	else:
-		return false
 
 #----------				----------#
 #	Signal + fonctions associés
 #----------				----------#
 
-#Appelé lors de l'appuie sur le bouton Cancel lors de l'écoute
 func _on_cancel_button_up():
 	set_process_input(false)
 	InputManager.inputmap_change.emit(ActionListen)
