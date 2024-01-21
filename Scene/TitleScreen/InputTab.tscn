@@ -18,11 +18,18 @@ layout_mode = 2
 size_flags_vertical = 3
 follow_focus = true
 
-[node name="GridInput" type="GridContainer" parent="InputTabLayout/ListInput"]
+[node name="MargeGrid" type="MarginContainer" parent="InputTabLayout/ListInput"]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
-theme_override_constants/h_separation = 5
+theme_override_constants/margin_top = 10
+theme_override_constants/margin_bottom = 10
+
+[node name="GridInput" type="GridContainer" parent="InputTabLayout/ListInput/MargeGrid"]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_constants/v_separation = 10
 columns = 3
 script = ExtResource("2_k4w8m")
 

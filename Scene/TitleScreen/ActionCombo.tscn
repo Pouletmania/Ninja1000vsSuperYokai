@@ -21,6 +21,7 @@ size_flags_horizontal = 3
 visible = false
 layout_mode = 2
 size_flags_horizontal = 2
+expand_mode = 3
 script = ExtResource("2_w6yyc")
 
 [connection signal="button_up" from="Label" to="." method="_on_label_pressed"]
