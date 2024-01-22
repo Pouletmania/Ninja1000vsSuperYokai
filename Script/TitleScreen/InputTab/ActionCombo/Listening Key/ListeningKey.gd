@@ -22,8 +22,6 @@ var ActionListen: String	#Action en cours de lecture
 var EventCatch = null		#Rédupération de l'évènement lu
 var ActionToReplace = ""	#Action à remplacé si evènement lu déjà associé
 
-const TriggeredValue = 0.8	#Seuil de détection des inputs analogique
-
 #-------		--------#
 #	Chemin node enfant
 #-------		--------#
@@ -88,7 +86,7 @@ func _input(event: InputEvent):
 
 #Verification si dépassement du seuil pour les inputs analogique
 func is_triggered(event: InputEventJoypadMotion):
-	if abs(event.get_axis_value()) > abs(TriggeredValue):
+	if abs(event.get_axis_value()) > abs(Files.TriggeredValue):
 		return true
 	else:
 		return false

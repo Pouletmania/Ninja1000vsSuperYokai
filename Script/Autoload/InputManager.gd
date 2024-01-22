@@ -21,6 +21,7 @@ const GamepadConfigFiles = "res://Config/GamepadConfigFiles.cfg"
 var ConfigPath = ""
 var KeyConfigMode: bool
 var CurrentConfig = ConfigFile.new()
+var LastFocus
 
 #Signal émit lors d'un changement de configuration.
 signal switch_configuration
@@ -39,6 +40,7 @@ func is_key_config_mode():
 
 func _ready():
 	Input.joy_connection_changed.connect(_on_joy_connection_changed)
+	get_viewport().gui_focus_changed.connect(_on_focus_change)
 	setup_first_config_input()
 
 func setup_first_config_input():
@@ -86,7 +88,6 @@ func write_current_config_in_inputmap():
 			if convert_config_as_event(action) != null:
 				InputMap.action_add_event(action, convert_config_as_event(action))
 
-
 #----------				----------#
 #	Signal + fonctions associés
 #----------				----------#
@@ -100,6 +101,11 @@ func _on_joy_connection_changed(_device: int, _connected: bool):
 func switch_config():
 	setup_first_config_input()
 	switch_configuration.emit()
+
+#Sauvegarde du dernier focus
+func _on_focus_change(control: Control):
+	if control != null:
+		LastFocus = control
 
 #----------													----------#
 #	Fonction de manipulation de l'InputMap + fonctions associés

@@ -87,30 +87,40 @@ script = SubResource("GDScript_54fxu")
 
 [node name="Continue" type="TextureButton" parent="MainScreen"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Quit")
+focus_neighbor_bottom = NodePath("../Load")
 texture_normal = ExtResource("2_vt5ah")
 texture_focused = ExtResource("3_rssv7")
 stretch_mode = 3
 
 [node name="Load" type="TextureButton" parent="MainScreen"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Continue")
+focus_neighbor_bottom = NodePath("../NewGame")
 texture_normal = ExtResource("3_77qaw")
 texture_focused = ExtResource("5_k87cm")
 stretch_mode = 3
 
 [node name="NewGame" type="TextureButton" parent="MainScreen"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Load")
+focus_neighbor_bottom = NodePath("../Option")
 texture_normal = ExtResource("4_r2376")
 texture_focused = ExtResource("7_cwyb7")
 stretch_mode = 3
 
 [node name="Option" type="TextureButton" parent="MainScreen"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../NewGame")
+focus_neighbor_bottom = NodePath("../Quit")
 texture_normal = ExtResource("5_w63xo")
 texture_focused = ExtResource("9_bd7sr")
 stretch_mode = 3
 
 [node name="Quit" type="TextureButton" parent="MainScreen"]
 layout_mode = 2
+focus_neighbor_top = NodePath("../Option")
+focus_neighbor_bottom = NodePath("../Continue")
 texture_normal = ExtResource("6_vc0lr")
 texture_focused = ExtResource("11_hm0qc")
 stretch_mode = 3
