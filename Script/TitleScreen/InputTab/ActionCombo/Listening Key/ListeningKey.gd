@@ -119,6 +119,15 @@ func draw_replace_menu():
 	await get_tree().create_timer(0.2).timeout	#Delai avant positionnement du focus suppression de l'appel à l'action ui_accept de manière involontaire
 	c_ReplaceButton.grab_focus()
 
+
+#----------				----------#
+#	Process + fonctions associés
+#----------				----------#
+
+func _process(_delta):
+	if Input.is_action_just_pressed("ui_cancel") and get_node("Menu/Replace").is_visible_in_tree():
+		get_node("Menu/Cancel").grab_focus()
+
 #----------				----------#
 #	Signal + fonctions associés
 #----------				----------#
