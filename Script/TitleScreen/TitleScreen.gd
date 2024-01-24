@@ -23,3 +23,8 @@ func _on_back_pressed():
 #Appelé lors de l'appuie sur le bouton Quit
 func _on_quit_pressed():
 	get_tree().quit()
+
+
+func _on_new_game_pressed():
+	get_tree().root.add_child(Files.NewGameScene.instantiate())
+	queue_free()
